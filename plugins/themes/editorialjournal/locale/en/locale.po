@@ -284,3 +284,111 @@ msgstr "YouTube channel URL"
 
 msgid "plugins.themes.editorialjournal.option.social.description"
 msgstr "Optional. A full https:// address shown in the footer under \"Connect With Us\". Leave empty to hide."
+
+msgid "plugins.themes.editorialjournal.about.overview"
+msgstr "Journal Overview"
+
+msgid "plugins.themes.editorialjournal.about.keyInfo"
+msgstr "Key Information"
+
+msgid "plugins.themes.editorialjournal.about.indexing"
+msgstr "Indexing & Abstracting"
+
+msgid "plugins.themes.editorialjournal.about.contactOffice"
+msgstr "Contact the Editorial Office"
+
+msgid "plugins.themes.editorialjournal.about.apc"
+msgstr "Article Processing Charge (APC)"
+
+msgid "plugins.themes.editorialjournal.about.language"
+msgstr "Language"
+
+msgid "plugins.themes.editorialjournal.about.publisher"
+msgstr "Publisher"
+
+msgid "plugins.themes.editorialjournal.about.oaCard"
+msgstr "for a Healthier World"
+
+msgid "plugins.themes.editorialjournal.about.tile.peerReview"
+msgstr "Rigorous Peer Review"
+
+msgid "plugins.themes.editorialjournal.about.tile.openAccess"
+msgstr "Open Access for All"
+
+msgid "plugins.themes.editorialjournal.about.tile.multidisciplinary"
+msgstr "Multidisciplinary Approach"
+
+msgid "plugins.themes.editorialjournal.about.noContent"
+msgstr "Information about the journal will appear here once the editorial team adds it."
+
+msgid "plugins.themes.editorialjournal.option.indexing"
+msgstr "Indexing & Abstracting services"
+
+msgid "plugins.themes.editorialjournal.option.indexing.description"
+msgstr "Optional. One service per line, optionally followed by | and its https:// link, e.g. \"Google Scholar | https://scholar.google.com/...\". List only services that currently index the journal. Leave empty to hide the card on the About page."
+
+msgid "plugins.themes.editorialjournal.issue.bannerSummary"
+msgstr "Explore the research, reviews and perspectives published in this issue."
+
+msgid "plugins.themes.editorialjournal.issue.viewFullIssue"
+msgstr "View Full Issue"
+
+msgid "plugins.themes.editorialjournal.issue.downloadIssue"
+msgstr "Download Issue (PDF)"
+
+msgid "plugins.themes.editorialjournal.issue.articles"
+msgstr "Articles in this issue"
+
+msgid "plugins.themes.editorialjournal.issue.filterBySection"
+msgstr "Filter articles by section"
+
+msgid "plugins.themes.editorialjournal.issue.allArticles"
+msgstr "All Articles"
+
+msgid "plugins.themes.editorialjournal.issue.searchLabel"
+msgstr "Search articles in this issue…"
+
+msgid "plugins.themes.editorialjournal.issue.pages"
+msgstr "Pages {$pages}"
+
+msgid "plugins.themes.editorialjournal.issue.viewAbstract"
+msgstr "View Abstract"
+
+msgid "plugins.themes.editorialjournal.issue.noMatch"
+msgstr "No articles in this issue match your search."
+
+msgid "plugins.themes.editorialjournal.issue.noArticles"
+msgstr "No articles have been published in this issue yet."
+
+msgid "plugins.themes.editorialjournal.issue.matches"
+msgstr "Articles shown: {$count}"
+
+msgid "plugins.themes.editorialjournal.issue.information"
+msgstr "Issue Information"
+
+msgid "plugins.themes.editorialjournal.issue.publicationDate"
+msgstr "Publication Date"
+
+msgid "plugins.themes.editorialjournal.issue.totalArticles"
+msgstr "Total Articles"
+
+msgid "plugins.themes.editorialjournal.issue.pagesLabel"
+msgstr "Pages"
+
+msgid "plugins.themes.editorialjournal.issue.download"
+msgstr "Download"
+
+msgid "plugins.themes.editorialjournal.issue.frontCover"
+msgstr "Front Cover"
+
+msgid "plugins.themes.editorialjournal.issue.share"
+msgstr "Share This Issue"
+
+msgid "plugins.themes.editorialjournal.issue.shareOn"
+msgstr "Share on {$network}"
+
+msgid "plugins.themes.editorialjournal.issue.relatedLinks"
+msgstr "Related Links"
+
+msgid "plugins.themes.editorialjournal.issue.allIssues"
+msgstr "All Issues"
