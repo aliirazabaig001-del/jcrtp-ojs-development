@@ -62,7 +62,8 @@
 
     function setupReadingNavigation(labels) {
         const article = document.querySelector('.obj_article_details');
-        if (!article || !labels.articleNavigation) return;
+        // The theme's article template renders its own "On this page" card.
+        if (!article || article.classList.contains('jcrtp-article') || !labels.articleNavigation) return;
         const nav = document.createElement('nav');
         nav.className = 'jcrtp-article-nav';
         nav.setAttribute('aria-label', labels.articleNavigation);

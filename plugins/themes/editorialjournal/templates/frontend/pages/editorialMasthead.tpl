@@ -1,12 +1,19 @@
 {**
- * Theme presentation for the journal's Editorial Board and native OJS masthead.
+ * Theme presentation for the journal's Editorial Board and native OJS masthead,
+ * in the shared inner-page layout (banner + Journal Information navigation).
  *}
-{include file="frontend/components/header.tpl" pageTitle="plugins.themes.editorialjournal.board.heading"}
+{include file="frontend/components/header.tpl" pageTitle="plugins.themes.editorialjournal.board.heading" isFullWidth=true}
 
-<div class="page page_masthead jcrtp-editorial-board">
-    {include file="frontend/components/breadcrumbs.tpl" currentTitleKey="plugins.themes.editorialjournal.board.heading"}
+<div class="page page_masthead jcrtp-editorial-board jcrtp-inner jcrtp-doc">
+    {capture assign=jcrtpBannerTitle}{translate key="plugins.themes.editorialjournal.board.heading"}{/capture}
+    {capture assign=jcrtpBannerCrumbs}<li><a href="{url page="about"}">{translate key="plugins.themes.editorialjournal.nav.about"}</a></li>{/capture}
+    {include file="frontend/components/jcrtp/pageBanner.tpl" bannerTitle=$jcrtpBannerTitle bannerSummary="" bannerCrumbs=$jcrtpBannerCrumbs bannerCurrent="" bannerEyebrow="" bannerSubtitle=""}
 
-    <h1>{translate key="plugins.themes.editorialjournal.board.heading"}</h1>
+    <div class="jcrtp-inner__body jcrtp-doc__layout">
+    <aside class="jcrtp-doc__nav">
+        {include file="frontend/components/jcrtp/infoLinks.tpl" current="board"}
+    </aside>
+    <div class="jcrtp-doc__main">
     <section class="jcrtp-board" aria-labelledby="jcrtp-board-heading">
         <h2 id="jcrtp-board-heading">{translate key="plugins.themes.editorialjournal.board.membersHeading"}</h2>
         <div class="jcrtp-board__grid">
@@ -105,9 +112,11 @@
     {/if}
 
     <p class="jcrtp-board__history">
-        {capture assign=editorialHistoryUrl}{url page="about" op="editorialHistory" router=\PKP\core\PKPApplication::ROUTE_PAGE}{/capture}
+        {capture assign=editorialHistoryUrl}{url page="about" op="editorialHistory" router=PKP\core\PKPApplication::ROUTE_PAGE}{/capture}
         {translate key="about.editorialMasthead.linkToEditorialHistory" url=$editorialHistoryUrl}
     </p>
+    </div>
+    </div>
 </div>
 
-{include file="frontend/components/footer.tpl"}
+{include file="frontend/components/footer.tpl" isFullWidth=true}
