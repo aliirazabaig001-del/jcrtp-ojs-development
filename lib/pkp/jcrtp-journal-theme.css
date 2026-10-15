@@ -1,0 +1,587 @@
+/* =========================================================
+   JCRTP OJS JOURNAL THEME
+   Journal of Cancer Research, Therapy and Perspectives
+   File: jcrtp-journal-theme.css
+   ========================================================= */
+
+/* ---------- GLOBAL ---------- */
+
+:root {
+    --jcrtp-navy: #0b2f5b;
+    --jcrtp-blue: #154f87;
+    --jcrtp-magenta: #c2187a;
+    --jcrtp-purple: #6f2c91;
+    --jcrtp-light: #f6f8fb;
+    --jcrtp-border: #d9e1ea;
+    --jcrtp-text: #222b35;
+    --jcrtp-muted: #65717d;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Open Sans", Arial, sans-serif;
+    background: #f4f6f9;
+    color: var(--jcrtp-text);
+    line-height: 1.65;
+}
+
+a {
+    color: var(--jcrtp-blue);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--jcrtp-magenta);
+}
+
+
+/* ---------- MAIN SITE WRAPPER ---------- */
+
+.pkp_structure_page {
+    background: #ffffff;
+    max-width: 1500px;
+    margin: 0 auto;
+    box-shadow: 0 0 28px rgba(0,0,0,0.08);
+}
+
+
+/* ---------- HEADER ---------- */
+
+.pkp_head_wrapper {
+    background: linear-gradient(
+        135deg,
+        var(--jcrtp-navy),
+        var(--jcrtp-blue)
+    );
+}
+
+.pkp_site_name_wrapper {
+    background: transparent;
+    padding-top: 18px;
+    padding-bottom: 12px;
+}
+
+.pkp_site_name {
+    text-align: left;
+}
+
+.pkp_site_name img {
+    max-height: 105px;
+    width: auto;
+}
+
+
+/* ---------- PRIMARY NAVIGATION ---------- */
+
+.pkp_navigation_primary_wrapper {
+    background: rgba(4, 31, 60, 0.96);
+    border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+.pkp_navigation_primary {
+    margin: 0;
+}
+
+.pkp_navigation_primary > li > a {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    padding: 16px 18px;
+    border-bottom: 3px solid transparent;
+}
+
+.pkp_navigation_primary > li > a:hover,
+.pkp_navigation_primary > li > a:focus {
+    color: #ffffff;
+    background: rgba(255,255,255,0.08);
+    border-bottom-color: var(--jcrtp-magenta);
+}
+
+.pkp_navigation_primary ul {
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.16);
+}
+
+
+/* ---------- SEARCH ---------- */
+
+.pkp_search {
+    color: #ffffff;
+}
+
+.pkp_search_desktop .search_prompt {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+
+/* ---------- HOMEPAGE HERO IMAGE ---------- */
+
+.pkp_page_index .homepage_image {
+    margin: 0 0 30px 0;
+}
+
+.pkp_page_index .homepage_image img {
+    width: 100%;
+    display: block;
+    border-radius: 0;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.10);
+}
+
+
+/* ---------- MAIN CONTENT ---------- */
+
+.pkp_structure_main {
+    background: #ffffff;
+    padding: 34px 38px;
+}
+
+.pkp_structure_content {
+    background: #ffffff;
+}
+
+
+/* ---------- TYPOGRAPHY ---------- */
+
+h1,
+h2,
+h3,
+h4,
+.page_title,
+.current_issue_title {
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--jcrtp-navy);
+}
+
+h1,
+.page_title {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-top: 28px;
+    margin-bottom: 15px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+p {
+    font-size: 16px;
+}
+
+
+/* ---------- ABOUT JOURNAL SECTION ---------- */
+
+.homepage_about {
+    background: var(--jcrtp-light);
+    border-left: 5px solid var(--jcrtp-magenta);
+    padding: 24px 28px;
+    margin: 28px 0;
+    border-radius: 6px;
+}
+
+.homepage_about h2 {
+    margin-top: 0;
+}
+
+
+/* ---------- CURRENT ISSUE ---------- */
+
+.current_issue {
+    margin-top: 34px;
+    padding-top: 28px;
+    border-top: 1px solid var(--jcrtp-border);
+}
+
+.current_issue .current_issue_title {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.current_issue .current_issue_title a {
+    color: var(--jcrtp-navy);
+}
+
+.current_issue .current_issue_title a:hover {
+    color: var(--jcrtp-magenta);
+}
+
+.current_issue .published {
+    color: var(--jcrtp-muted);
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+
+/* ---------- ARTICLE LIST / TOC ---------- */
+
+.obj_article_summary {
+    background: #ffffff;
+    border: 1px solid var(--jcrtp-border);
+    border-left: 4px solid var(--jcrtp-blue);
+    border-radius: 7px;
+    padding: 20px 22px;
+    margin-bottom: 18px;
+    transition: all 0.2s ease;
+}
+
+.obj_article_summary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(11,47,91,0.08);
+    border-left-color: var(--jcrtp-magenta);
+}
+
+.obj_article_summary .title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 19px;
+    line-height: 1.4;
+    font-weight: 700;
+}
+
+.obj_article_summary .title a {
+    color: var(--jcrtp-navy);
+}
+
+.obj_article_summary .title a:hover {
+    color: var(--jcrtp-magenta);
+}
+
+.obj_article_summary .authors {
+    color: #4e5965;
+    font-size: 14px;
+    margin-top: 7px;
+}
+
+.obj_article_summary .pages {
+    color: var(--jcrtp-muted);
+    font-size: 13px;
+}
+
+
+/* ---------- DOI / METADATA ---------- */
+
+.obj_article_details .item {
+    margin-bottom: 22px;
+}
+
+.obj_article_details .label {
+    color: var(--jcrtp-navy);
+    font-weight: 700;
+}
+
+.obj_article_details .value {
+    color: var(--jcrtp-text);
+}
+
+.obj_article_details .doi a {
+    color: var(--jcrtp-blue);
+    font-weight: 600;
+}
+
+
+/* ---------- ABSTRACT ---------- */
+
+.obj_article_details .abstract {
+    background: #fafbfd;
+    border: 1px solid var(--jcrtp-border);
+    border-radius: 7px;
+    padding: 20px 24px;
+}
+
+
+/* ---------- PDF / GALLEY BUTTONS ---------- */
+
+.obj_galley_link,
+.cmp_button,
+button,
+input[type="submit"],
+.button {
+    background: var(--jcrtp-navy);
+    color: #ffffff !important;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 16px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.obj_galley_link:hover,
+.cmp_button:hover,
+button:hover,
+input[type="submit"]:hover,
+.button:hover {
+    background: var(--jcrtp-magenta);
+    color: #ffffff !important;
+}
+
+
+/* ---------- MAKE A SUBMISSION ---------- */
+
+.block_make_submission {
+    margin-top: 20px;
+}
+
+.block_make_submission a {
+    display: block;
+    text-align: center;
+    background: linear-gradient(
+        135deg,
+        var(--jcrtp-blue),
+        var(--jcrtp-navy)
+    );
+    color: #ffffff !important;
+    padding: 14px 18px;
+    border-radius: 6px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    box-shadow: 0 4px 12px rgba(11,47,91,0.18);
+}
+
+.block_make_submission a:hover {
+    background: linear-gradient(
+        135deg,
+        var(--jcrtp-magenta),
+        var(--jcrtp-purple)
+    );
+}
+
+
+/* ---------- SIDEBAR ---------- */
+
+.pkp_structure_sidebar {
+    background: #f7f9fc;
+    border-left: 1px solid var(--jcrtp-border);
+    padding: 28px 24px;
+}
+
+.pkp_structure_sidebar .block {
+    background: #ffffff;
+    border: 1px solid var(--jcrtp-border);
+    border-radius: 7px;
+    padding: 18px;
+    margin-bottom: 20px;
+}
+
+.pkp_structure_sidebar .title {
+    color: var(--jcrtp-navy);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+
+/* ---------- INFORMATION LINKS ---------- */
+
+.block_information ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.block_information li {
+    margin-bottom: 8px;
+}
+
+.block_information a {
+    display: block;
+    padding: 8px 10px;
+    border-radius: 4px;
+}
+
+.block_information a:hover {
+    background: #eef3f8;
+}
+
+
+/* ---------- ISSUE ARCHIVE ---------- */
+
+.obj_issue_summary {
+    background: #ffffff;
+    border: 1px solid var(--jcrtp-border);
+    padding: 20px;
+    border-radius: 7px;
+    margin-bottom: 18px;
+}
+
+.obj_issue_summary .title {
+    color: var(--jcrtp-navy);
+    font-weight: 700;
+}
+
+
+/* ---------- FORMS ---------- */
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+    border: 1px solid #cdd6df;
+    border-radius: 5px;
+    padding: 10px 12px;
+    background: #ffffff;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--jcrtp-blue);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(21,79,135,0.10);
+}
+
+
+/* ---------- TABLES ---------- */
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table th {
+    background: var(--jcrtp-navy);
+    color: #ffffff;
+    padding: 12px;
+}
+
+table td {
+    border-bottom: 1px solid var(--jcrtp-border);
+    padding: 11px 12px;
+}
+
+
+/* ---------- FOOTER ---------- */
+
+.pkp_structure_footer_wrapper {
+    background: linear-gradient(
+        135deg,
+        #08284b,
+        #0b3f73
+    );
+    color: #ffffff;
+    margin-top: 40px;
+}
+
+.pkp_structure_footer {
+    padding: 30px 34px;
+}
+
+.pkp_structure_footer a {
+    color: #ffffff;
+}
+
+.pkp_structure_footer a:hover {
+    color: #f2b8da;
+}
+
+.pkp_footer_content {
+    line-height: 1.8;
+}
+
+
+/* ---------- BREADCRUMBS ---------- */
+
+.cmp_breadcrumbs {
+    color: var(--jcrtp-muted);
+    font-size: 13px;
+}
+
+.cmp_breadcrumbs a {
+    color: var(--jcrtp-blue);
+}
+
+
+/* ---------- PAGINATION ---------- */
+
+.cmp_pagination .current {
+    background: var(--jcrtp-navy);
+    color: #ffffff;
+    border-radius: 4px;
+}
+
+
+/* ---------- ACCESSIBILITY ---------- */
+
+a:focus,
+button:focus,
+input:focus {
+    outline: 2px solid var(--jcrtp-magenta);
+    outline-offset: 2px;
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 992px) {
+
+    .pkp_structure_main {
+        padding: 24px;
+    }
+
+    .pkp_structure_sidebar {
+        border-left: none;
+        border-top: 1px solid var(--jcrtp-border);
+    }
+
+    .pkp_site_name img {
+        max-height: 85px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .pkp_structure_main {
+        padding: 18px;
+    }
+
+    h1,
+    .page_title {
+        font-size: 25px;
+    }
+
+    h2 {
+        font-size: 21px;
+    }
+
+    .obj_article_summary {
+        padding: 16px;
+    }
+
+    .homepage_about {
+        padding: 18px;
+    }
+
+    .pkp_page_index .homepage_image img {
+        border-radius: 0;
+    }
+}
+
+
+/* ---------- PRINT ---------- */
+
+@media print {
+
+    .pkp_head_wrapper,
+    .pkp_structure_sidebar,
+    .pkp_structure_footer_wrapper {
+        display: none;
+    }
+
+    body {
+        background: #ffffff;
+        color: #000000;
+    }
+
+    .pkp_structure_main {
+        padding: 0;
+    }
+}

@@ -1,0 +1,80 @@
+/* JCRTP custom styling */
+
+body {
+    font-family: "Open Sans", Arial, sans-serif;
+    background: #f8fafc;
+    color: #1f2937;
+}
+
+/* Header */
+.pkp_site_name_wrapper,
+.pkp_navigation_primary_wrapper {
+    background: #0b3a63;
+}
+
+.pkp_site_name img {
+    max-height: 90px;
+}
+
+/* Main navigation */
+.pkp_navigation_primary > li > a {
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    padding: 14px 18px;
+}
+
+.pkp_navigation_primary > li > a:hover {
+    background: rgba(255,255,255,0.08);
+}
+
+/* Content area */
+.pkp_structure_main {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 24px;
+}
+
+/* Headings */
+h1, h2, h3, .page_title {
+    font-family: Georgia, "Times New Roman", serif;
+    color: #0b3a63;
+}
+
+/* Buttons */
+.cmp_button,
+.obj_galley_link,
+button,
+input[type="submit"] {
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+/* Make submission button */
+.block_make_submission a {
+    display: inline-block;
+    background: #0b3a63;
+    color: #fff !important;
+    padding: 12px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+/* Sidebar */
+.pkp_structure_sidebar {
+    background: #f4f7fb;
+    border-radius: 10px;
+    padding: 18px;
+}
+
+/* Homepage banner */
+.pkp_page_index .homepage_image img {
+    width: 100%;
+    border-radius: 12px;
+    display: block;
+}
+
+/* Footer */
+.pkp_structure_footer_wrapper {
+    background: #0b3a63;
+    color: #fff;
+}

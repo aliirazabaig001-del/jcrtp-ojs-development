@@ -1,0 +1,56 @@
+@media (max-width: 991px) {
+    .pkp_structure_head .pkp_head_wrapper,
+    .pkp_structure_content,
+    .pkp_structure_footer_wrapper .pkp_structure_footer {
+        padding-left: 28px;
+        padding-right: 28px;
+    }
+    .pkp_structure_content.has_sidebar .pkp_structure_main { width: 100%; }
+}
+
+@media (max-width: 760px) {
+    .pkp_structure_head .pkp_head_wrapper,
+    .pkp_structure_content,
+    .pkp_structure_footer_wrapper .pkp_structure_footer {
+        padding-left: 22px;
+        padding-right: 22px;
+    }
+    .pkp_structure_head .pkp_site_name_wrapper { min-height: 88px; }
+    .pkp_structure_head .pkp_site_name a.is_text { font-size: 34px; }
+    .pkp_structure_head .pkp_site_name img { max-width: min(240px, 62vw); max-height: 61px; }
+    .pkp_structure_head .pkp_site_nav_menu { background: var(--ej-paper); }
+    .pkp_structure_head .pkp_navigation_primary_wrapper { display: block; }
+    .pkp_structure_head .pkp_navigation_primary_row { border-top: 1px solid var(--ej-line); }
+    .pkp_structure_head .pkp_navigation_primary > li > a { display: block; padding: 13px 0; }
+    .pkp_structure_main > .page,
+    .pkp_structure_main > .page_index_journal { padding-top: 42px; padding-bottom: 64px; }
+    .editorial-intro { display: block; padding-bottom: 27px; }
+    .editorial-intro h2 { font-size: 44px; }
+    .editorial-intro__copy { max-width: 470px; margin-top: 16px; }
+    .editorial-feature { grid-template-columns: 1fr; }
+    .editorial-feature__art { order: -1; min-height: 340px; }
+    .editorial-feature__real-cover,
+    .editorial-feature__cover { width: 190px; }
+    .editorial-feature__copy { min-height: 310px; padding: 29px 25px 27px; }
+    .editorial-feature h2 { margin-top: 24px; font-size: 42px; }
+    .editorial-section-heading { margin-top: 50px; }
+    .editorial-section-heading h2 { font-size: 30px; }
+    .editorial-about { grid-template-columns: 1fr; margin-top: 58px; }
+    .editorial-about > div { padding: 29px 0 27px; }
+    .editorial-about h2 { font-size: 36px; }
+    .editorial-about dl { border-left: 0; border-top: 1px solid var(--ej-line); padding: 20px 0; }
+    .editorial-archive-band { display: block; }
+    .editorial-archive-band > a { width: 100%; justify-content: space-between; margin-top: 20px; }
+    .page_article .obj_article_details .page_title,
+    .page_article .obj_article_details .page_title .title { font-size: 46px; }
+}
+
+@media (max-width: 430px) {
+    .editorial-feature__footer { align-items: flex-start; flex-direction: column; }
+    .editorial-about dl > div { grid-template-columns: 95px 1fr; }
+    .editorial-section-heading { align-items: flex-start; flex-direction: column; gap: 6px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}

@@ -1,0 +1,85 @@
+[
+    {
+        "name": "Dr Muhammad Noman",
+        "credentials": "MPhil, PhD, CHPE, MPH",
+        "image": "dr-muhammad-noman.jpeg",
+        "appointments": [
+            "Managing Director, Research Cell, Sir James Lyall Oncology, Cancer Center & Research Institute, East Canal Road, Faisalabad",
+            "Chief Executive, Sir James Lyall Oncology, Cancer Center & Research Institute, East Canal Road, Faisalabad"
+        ],
+        "expertise": [
+            "Human genetics",
+            "Molecular biology",
+            "Hereditary disorders",
+            "Cancer genetics",
+            "Genetic variant analysis",
+            "Molecular diagnostics",
+            "Cancer genetic profiling",
+            "Precision medicine",
+            "Translational oncology"
+        ],
+        "biography": "Dr. Muhammad Noman is a biochemist and molecular biologist specializing in human genetics, molecular biology, hereditary disorders and cancer genetics. His research experience includes genetic variant analysis, molecular diagnostics and cancer genetic profiling, with collaborations involving national and international research institutions. He has authored peer-reviewed scientific publications and scholarly book chapters. His research interests include cancer genetics, precision medicine and translational oncology, with a commitment to scientific integrity and excellence in scholarly publishing."
+    },
+    {
+        "name": "Dr. Muhammad Tahir Bashir",
+        "credentials": "MBBS, FCPS, FACP, MRCPS (Glasg), MCPS (Health Professions Education)",
+        "image": "dr-muhammad-tahir-bashir.jpeg",
+        "appointments": [
+            "Associate Professor of Oncology and Head, Department of Oncology, Faisalabad Medical University, Faisalabad, Pakistan, and affiliated hospitals",
+            "Director, Office of Research, Innovation and Commercialization (ORIC), Faisalabad Medical University, Faisalabad, Pakistan"
+        ],
+        "expertise": [
+            "Clinical oncology",
+            "Medical education",
+            "Academic leadership",
+            "Research management",
+            "Cancer prevention and early detection",
+            "Clinical and translational oncology",
+            "Evidence-based healthcare"
+        ],
+        "biography": "Dr. Muhammad Tahir Bashir is an associate professor of oncology and director of the Office of Research, Innovation and Commercialization (ORIC) at Faisalabad Medical University, Pakistan. His professional expertise encompasses clinical oncology, medical education, academic leadership and research management. His research interests include cancer prevention, early detection, clinical and translational oncology, evidence-based healthcare and improving patient outcomes. He is committed to advancing cancer research, fostering interdisciplinary collaboration and translating scientific evidence into improved clinical practice and healthcare delivery."
+    },
+    {
+        "name": "Dr Sajid Hussain",
+        "credentials": "PhD Biological Sciences",
+        "image": "dr-sajid-hussain.jpeg",
+        "appointments": [
+            "Post-Doctoral Research Fellow, Research Group of Cancer Biomarkers, Biomedical Research Institute of Lleida (IRBLleida), Av. Alcalde Rovira Roure, 80, 25198 Lleida, Spain"
+        ],
+        "expertise": [
+            "Cancer biology",
+            "Molecular and cellular biology",
+            "Molecular imaging",
+            "Drug-delivery research",
+            "Triple-negative breast cancer",
+            "MYC- and BRD4-associated oncogenic signaling",
+            "Epigenetic regulation",
+            "Cancer-cell metabolism and apoptosis",
+            "Therapeutic response",
+            "Fluorescence microscopy and two-photon imaging",
+            "Quantitative image analysis",
+            "Chemical biology and fluorescent-probe development",
+            "Drug mechanisms and oral drug absorption",
+            "Intestinal mucus biology and epithelial transport"
+        ],
+        "biography": "Sajid Hussain’s expertise encompasses cancer biology, molecular and cellular biology, molecular imaging and drug-delivery research. His primary research focus is triple-negative breast cancer, particularly MYC- and BRD4-associated oncogenic signaling, epigenetic regulation, cancer-cell metabolism, apoptosis and mechanisms of therapeutic response. He has experience in molecular and cellular assays, protein analysis, functional studies, fluorescence microscopy, two-photon imaging and quantitative image analysis. His research interests include targeted cancer therapy, identification of molecular vulnerabilities in cancer cells and translational approaches to improve therapeutic strategies. He is also interested in chemical biology, fluorescent-probe development, intracellular organelle imaging and the application of molecular imaging tools to investigate cancer-associated cellular processes. His broader expertise includes drug mechanisms, oral drug absorption, intestinal mucus biology, epithelial transport, and interactions between absorption enhancers and biological barriers. He is experienced in experimental design, data analysis and interpretation, scientific manuscript preparation, grant development, interdisciplinary collaboration, laboratory coordination and mentoring junior researchers."
+    },
+    {
+        "name": "Dr. Shehbaz Ali",
+        "credentials": "",
+        "image": "",
+        "appointments": [
+            "Associate Professor, Department of Biotechnology, International Institute of Science, Arts and Technology, Gujranwala, Pakistan"
+        ],
+        "expertise": [
+            "Synthetic biology",
+            "Molecular biology",
+            "Microbial biotechnology",
+            "Bioenergy and bioprocess engineering",
+            "CRISPR-Cas genome editing",
+            "Metabolic engineering",
+            "Lignin valorization"
+        ],
+        "biography": ""
+    }
+]

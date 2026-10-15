@@ -1,0 +1,1355 @@
+/* ============================================================
+   JCRTP EDITORIAL JOURNAL - chrome.css
+   Full-bleed masthead, navigation, sidebar and footer
+   ============================================================ */
+
+/* Keep the masthead full width while leaving the page content container intact. */
+.pkp_structure_page .pkp_structure_head {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    /* Matches the official logo's opaque off-white edge so it sits seamlessly. */
+    background: #fdfdfd;
+    color: var(--jc-navy, #0b2f5b);
+    border: 0;
+    box-shadow: none;
+}
+.pkp_structure_page .pkp_structure_head .pkp_head_wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+/* Header bands from design-references/header-navigation.png:
+   purple utility bar, white masthead (logo left, facts right), purple nav. */
+.pkp_structure_page .pkp_structure_head {
+    --jc-head-max: 1440px;
+    --jc-head-gutter: clamp(16px, 3vw, 48px);
+    --jc-head-inline: max(var(--jc-head-gutter), calc((100% - var(--jc-head-max)) / 2 + var(--jc-head-gutter)));
+    --jc-topbar-bg: linear-gradient(90deg, #4a1877, #5a1f8a 55%, #4a1877);
+    --jc-nav-bg: #2a1257;
+    --jc-nav-active: #7a2fbf;
+}
+
+/* 1. Utility bar */
+.jcrtp-topbar {
+    color: #ffffff;
+    background: var(--jc-topbar-bg);
+}
+.jcrtp-topbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 24px;
+    min-height: 44px;
+    padding: 0 var(--jc-head-inline);
+}
+.jcrtp-topbar__tagline {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    margin: 0;
+    font-size: .92rem;
+    line-height: 1.3;
+}
+.jcrtp-topbar__tagline svg { flex: none; }
+.pkp_structure_page .jcrtp-topbar .pkp_navigation_user_wrapper {
+    position: static;
+    display: flex;
+    align-items: center;
+    flex: none;
+    width: auto;
+    margin: 0 0 0 auto;
+    padding: 0;
+    transform: none;
+    background: transparent;
+    border: 0;
+}
+/* The parent theme's clearfix pseudo-elements and fixed container widths
+   would act as flex items and push content to the centre. */
+.pkp_structure_page .jcrtp-topbar .pkp_navigation_user::before,
+.pkp_structure_page .jcrtp-topbar .pkp_navigation_user::after,
+.pkp_structure_page .pkp_structure_head .pkp_site_name_wrapper::before,
+.pkp_structure_page .pkp_structure_head .pkp_site_name_wrapper::after {
+    display: none;
+    content: none;
+}
+.pkp_structure_page .jcrtp-topbar .pkp_navigation_user {
+    display: flex;
+    align-items: center;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: 0;
+}
+.pkp_structure_page .jcrtp-topbar .pkp_navigation_user > li {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+.pkp_structure_page .jcrtp-topbar .pkp_navigation_user > li + li {
+    border-left: 1px solid rgba(255, 255, 255, .55);
+}
+.pkp_structure_page .jcrtp-topbar .pkp_navigation_user > li > a {
+    display: block;
+    padding: 4px 14px;
+    color: #ffffff;
+    font-size: .92rem;
+    line-height: 1.3;
+    text-decoration: none;
+}
+.pkp_structure_page .jcrtp-topbar .pkp_navigation_user:last-child > li:last-child > a:last-child { padding-right: 0; }
+.pkp_structure_page .jcrtp-topbar .jcrtp-topbar__submit {
+    display: block;
+    margin: 0;
+    padding: 4px 0 4px 14px;
+    color: #ffffff;
+    border-left: 1px solid rgba(255, 255, 255, .55);
+    font-size: .92rem;
+    line-height: 1.3;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.pkp_structure_page .jcrtp-topbar .pkp_navigation_user > li > a:hover,
+.pkp_structure_page .jcrtp-topbar .pkp_navigation_user > li > a:focus-visible,
+.pkp_structure_page .jcrtp-topbar .jcrtp-topbar__submit:hover,
+.pkp_structure_page .jcrtp-topbar .jcrtp-topbar__submit:focus-visible {
+    color: #f3d6ff;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+.pkp_structure_page .jcrtp-topbar :focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+}
+@media (max-width: 479px) {
+    .pkp_structure_page .jcrtp-topbar .pkp_navigation_user > li > a,
+    .pkp_structure_page .jcrtp-topbar .jcrtp-topbar__submit {
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: .86rem;
+    }
+    .pkp_structure_page .jcrtp-topbar .jcrtp-topbar__submit { padding-right: 0; }
+    .pkp_structure_page .jcrtp-topbar .pkp_navigation_user > li:first-child > a { padding-left: 0; }
+    .jcrtp-topbar__inner { justify-content: flex-end; }
+}
+
+/* 2. Masthead */
+.pkp_structure_page .pkp_structure_head .pkp_site_name_wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px clamp(16px, 3vw, 40px);
+    float: none;
+    clear: both;
+    left: auto;
+    right: auto;
+    transform: none;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    height: auto;
+    max-height: none;
+    margin: 0;
+    padding: clamp(8px, 1vw, 12px) var(--jc-head-inline);
+    background: #fdfdfd;
+    overflow: visible;
+}
+.pkp_structure_page .pkp_structure_head .pkp_site_name {
+    position: relative;
+    display: block;
+    flex: 0 1 auto;
+    float: none;
+    left: auto;
+    right: auto;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    overflow: visible;
+    white-space: normal;
+}
+/* JCRTP logo: a real <img> rendered by the theme's header.tpl override.
+   The official PNG (1896x830) is used unaltered; height drives the size and
+   width follows from the intrinsic ratio, so proportions never change. */
+.pkp_structure_page .pkp_structure_head .pkp_site_name a.is_img {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    overflow: visible;
+}
+.pkp_structure_page .pkp_structure_head .pkp_site_name a.is_img img {
+    display: block;
+    width: auto;
+    height: clamp(64px, 8vw, 116px);
+    max-width: 100%;
+    max-height: none;
+    aspect-ratio: 1896 / 830;
+    object-fit: contain;
+}
+.jcrtp-masthead-facts {
+    display: flex;
+    align-items: center;
+    flex: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: #1b2f6b;
+    font-size: .95rem;
+    line-height: 1.35;
+}
+.jcrtp-masthead-facts > li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 56px;
+    margin: 0;
+    padding: 0 clamp(14px, 1.6vw, 26px);
+    border-left: 1px solid #c9cfdc;
+}
+.jcrtp-masthead-facts > li:last-child { padding-right: 0; }
+.jcrtp-masthead-facts__oa {
+    flex-direction: row !important;
+    align-items: center;
+    gap: 10px;
+}
+.jcrtp-masthead-facts__oa span {
+    max-width: 4.5em;
+    font-weight: 700;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+}
+.jcrtp-masthead-facts__label { color: #24357a; }
+.pkp_structure_page .pkp_structure_head .pkp_site_name a.is_img:focus-visible {
+    outline: 2px solid var(--jc-magenta, #c2187a);
+    outline-offset: -4px;
+}
+.pkp_structure_page .pkp_structure_head .pkp_site_name a.is_text {
+    display: block;
+    padding: 20px 16px;
+    color: var(--jc-navy, #0b2f5b);
+    text-align: center;
+    text-decoration: none;
+}
+
+/* Tablet/mobile header: logo left, hamburger right on the white masthead. */
+@media (max-width: 991px) {
+    .pkp_structure_page .pkp_structure_head .pkp_site_name_wrapper {
+        padding-right: calc(var(--jc-head-gutter) + 52px);
+    }
+    .pkp_structure_page .pkp_structure_head .pkp_site_name a.is_img img {
+        height: clamp(60px, 13vw, 92px);
+    }
+    .jcrtp-masthead-facts { font-size: .85rem; }
+    .jcrtp-masthead-facts > li { min-height: 44px; padding: 0 12px; }
+    .pkp_structure_page .pkp_site_nav_toggle {
+        top: 50%;
+        right: max(4px, calc(var(--jc-head-gutter) - 8px));
+        left: auto;
+        width: 48px;
+        height: 48px;
+        transform: translateY(-50%);
+        box-shadow: none;
+    }
+    .pkp_structure_page .pkp_site_nav_toggle > span {
+        border-bottom-color: var(--jc-navy, #0b2f5b);
+    }
+    .pkp_structure_page .pkp_site_nav_toggle > span::before,
+    .pkp_structure_page .pkp_site_nav_toggle > span::after {
+        background: var(--jc-navy, #0b2f5b);
+    }
+}
+
+@media (max-width: 767px) {
+    .jcrtp-topbar__tagline { display: none; }
+    .jcrtp-masthead-facts > li:not(.jcrtp-masthead-facts__oa) { display: none; }
+}
+
+@media (max-width: 479px) {
+    .jcrtp-masthead-facts { display: none; }
+}
+
+/* =========================
+
+   3. HEADER NAVIGATION (wireframe band 3)
+   Menus render through templates/frontend/components/jcrtp/navigationMenu.tpl;
+   js/theme.js adds .is-open on dropdown items.
+
+   ========================= */
+
+.pkp_structure_page .pkp_site_nav_menu {
+    position: relative;
+    clear: both;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    top: auto;
+    left: auto;
+    z-index: 999;
+    background: var(--jc-nav-bg, #2a1257);
+}
+
+.pkp_structure_page .pkp_navigation_primary_row {
+    position: relative;
+    width: 100%;
+    background: var(--jc-nav-bg, #2a1257);
+    border: 0;
+}
+
+.pkp_structure_page .pkp_navigation_primary_row::before,
+.pkp_structure_page .pkp_navigation_primary_wrapper::before,
+.pkp_structure_page .pkp_navigation_primary_wrapper::after,
+.pkp_structure_page .jcrtp-nav::before,
+.pkp_structure_page .jcrtp-nav::after {
+    display: none;
+    content: none;
+}
+
+.pkp_structure_page .pkp_navigation_primary_wrapper {
+    position: relative;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0 var(--jc-head-inline, clamp(16px, 3vw, 48px));
+}
+
+.pkp_structure_page .jcrtp-nav {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.pkp_structure_page .jcrtp-nav > li {
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+/* Top-level links and toggle buttons share one look. */
+.pkp_structure_page .pkp_navigation_primary .jcrtp-nav__link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    color: #ffffff;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+    font-size: .95rem;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: .005em;
+    text-align: left;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color .18s ease, color .18s ease;
+}
+
+.jcrtp-nav__home-icon {
+    flex: none;
+    margin-top: -2px;
+}
+
+/* Chevron on dropdown toggles (CSS-drawn, rotates when open). */
+.pkp_structure_page .jcrtp-nav__toggle::after {
+    flex: none;
+    width: 7px;
+    height: 7px;
+    margin: -3px 2px 0 2px;
+    content: "";
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform .18s ease;
+}
+.pkp_structure_page .jcrtp-nav > li.is-open > .jcrtp-nav__toggle::after {
+    margin-top: 3px;
+    transform: rotate(-135deg);
+}
+
+/* Icon-only toggle used when a dropdown parent is also a link. */
+.pkp_structure_page .jcrtp-nav__toggle--icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    color: inherit;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+.pkp_structure_page .jcrtp-nav__submenu {
+    display: none;
+    margin: 0;
+    padding: 6px 0;
+    list-style: none;
+}
+.pkp_structure_page .jcrtp-nav > li.is-open > .jcrtp-nav__submenu,
+.pkp_structure_page .jcrtp-nav:not(.js-enhanced) > li:hover > .jcrtp-nav__submenu,
+.pkp_structure_page .jcrtp-nav:not(.js-enhanced) > li:focus-within > .jcrtp-nav__submenu {
+    display: block;
+}
+/* Cancel the parent theme's off-screen/Popper positioning
+   (left: -9999px; li:hover ul { transform: translate3d(7px, 40px, 0) }). */
+.pkp_structure_page .jcrtp-nav > li > .jcrtp-nav__submenu,
+.pkp_structure_page .jcrtp-nav > li:hover > .jcrtp-nav__submenu {
+    width: auto;
+    transform: none;
+    will-change: auto;
+}
+.pkp_structure_page .jcrtp-nav__submenu li {
+    margin: 0;
+    padding: 0;
+}
+.pkp_structure_page .jcrtp-nav .jcrtp-nav__submenu a {
+    border: 0;
+    border-radius: 0;
+}
+.pkp_structure_page .jcrtp-nav__submenu a {
+    display: block;
+    padding: 10px 18px;
+    color: #2a1257;
+    font-size: .92rem;
+    font-weight: 500;
+    line-height: 1.35;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.pkp_structure_page .jcrtp-nav__submenu a:hover,
+.pkp_structure_page .jcrtp-nav__submenu a:focus-visible {
+    color: #5a1f8a;
+    background: #f3ecfb;
+}
+.pkp_structure_page .jcrtp-nav__submenu a[aria-current="page"] {
+    color: #5a1f8a;
+    font-weight: 700;
+    box-shadow: inset 3px 0 0 #7a2fbf;
+}
+
+.pkp_structure_page .pkp_site_nav_menu :focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: -3px;
+}
+.pkp_structure_page .jcrtp-nav__submenu a:focus-visible {
+    outline-color: #7a2fbf;
+}
+
+/* Account menu dropdown in the utility bar (shown when signed in). */
+.pkp_structure_page .jcrtp-topbar .jcrtp-nav__submenu {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    left: auto;
+    z-index: 1003;
+    min-width: 200px;
+    background: #ffffff;
+    border: 1px solid #e3d9f0;
+    border-radius: 8px;
+    box-shadow: 0 14px 30px rgba(42, 18, 87, .18);
+}
+.pkp_structure_page .jcrtp-topbar .pkp_navigation_user > li.has-submenu {
+    display: flex;
+    align-items: center;
+}
+.pkp_structure_page .jcrtp-topbar .pkp_navigation_user > li > .jcrtp-nav__toggle--icon {
+    width: 28px;
+    height: 28px;
+    margin-left: -8px;
+}
+.pkp_structure_page .jcrtp-topbar .pkp_navigation_user > li > button.jcrtp-nav__link {
+    padding: 4px 14px;
+    color: #ffffff;
+    background: transparent;
+    border: 0;
+    font-size: .92rem;
+}
+
+/* -------- Desktop: horizontal bar with hover/click dropdowns -------- */
+@media (min-width: 992px) {
+    .pkp_structure_page .pkp_navigation_primary_wrapper {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .pkp_structure_page .pkp_navigation_primary_wrapper > .jcrtp-nav {
+        display: flex;
+        flex: 1 1 auto;
+        align-items: stretch;
+        min-width: 0;
+    }
+
+    .pkp_structure_page .pkp_navigation_primary > li {
+        display: flex;
+        align-items: stretch;
+    }
+
+    .pkp_structure_page .pkp_navigation_primary .jcrtp-nav__link {
+        min-height: 58px;
+        padding: 8px clamp(9px, 1.15vw, 20px);
+    }
+    .pkp_structure_page .pkp_navigation_primary > li.has-submenu > a.jcrtp-nav__link {
+        padding-right: 2px;
+    }
+    .pkp_structure_page .pkp_navigation_primary .jcrtp-nav__toggle--icon {
+        min-height: 58px;
+        padding: 0 clamp(9px, 1.15vw, 20px) 0 6px;
+    }
+
+    .pkp_structure_page .pkp_navigation_primary > li:hover > .jcrtp-nav__link,
+    .pkp_structure_page .pkp_navigation_primary > li:hover > .jcrtp-nav__toggle--icon,
+    .pkp_structure_page .pkp_navigation_primary > li.is-open > .jcrtp-nav__link,
+    .pkp_structure_page .pkp_navigation_primary > li.is-open > .jcrtp-nav__toggle--icon {
+        color: #ffffff;
+        background: rgba(255, 255, 255, .1);
+    }
+
+    .pkp_structure_page .pkp_navigation_primary > li.is-current > .jcrtp-nav__link,
+    .pkp_structure_page .pkp_navigation_primary > li.is-current > .jcrtp-nav__toggle--icon {
+        color: #ffffff;
+        background: var(--jc-nav-active, #7a2fbf);
+    }
+
+    .pkp_structure_page .pkp_navigation_primary .jcrtp-nav__submenu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1002;
+        min-width: 230px;
+        background: #ffffff;
+        border: 1px solid #e3d9f0;
+        border-top: 3px solid var(--jc-nav-active, #7a2fbf);
+        border-radius: 0 0 8px 8px;
+        box-shadow: 0 16px 32px rgba(42, 18, 87, .2);
+    }
+    .pkp_structure_page .pkp_navigation_primary > li:last-child > .jcrtp-nav__submenu {
+        right: 0;
+        left: auto;
+    }
+}
+
+/* Tighter type where nine items must share the row with search. */
+@media (min-width: 992px) and (max-width: 1279px) {
+    .pkp_structure_page .pkp_navigation_primary .jcrtp-nav__link {
+        gap: 6px;
+        font-size: .9rem;
+    }
+    .pkp_structure_page .pkp_navigation_primary .jcrtp-nav__link,
+    .pkp_structure_page .pkp_navigation_primary .jcrtp-nav__toggle--icon {
+        padding-left: clamp(6px, .8vw, 10px);
+        padding-right: clamp(6px, .8vw, 10px);
+    }
+    .jcrtp-nav__home-icon { width: 19px; height: 19px; }
+}
+
+/* -------- Tablet/mobile: hamburger drawer with accordion submenus -------- */
+@media (max-width: 991px) {
+    .pkp_structure_page .pkp_site_nav_menu {
+        border-top: 3px solid var(--jc-nav-active, #7a2fbf);
+        box-shadow: 0 18px 30px rgba(42, 18, 87, .25);
+    }
+    .pkp_structure_page .pkp_navigation_primary_wrapper {
+        display: flex;
+        flex-direction: column;
+        padding-top: 14px;
+        padding-bottom: 14px;
+    }
+    .pkp_structure_page .pkp_navigation_primary_wrapper > .jcrtp-nav {
+        display: block;
+        width: 100%;
+    }
+    .pkp_structure_page .pkp_navigation_primary > li {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: stretch;
+        border-bottom: 1px solid rgba(255, 255, 255, .12);
+    }
+    .pkp_structure_page .pkp_navigation_primary > li:last-child {
+        border-bottom: 0;
+    }
+    .pkp_structure_page .pkp_navigation_primary .jcrtp-nav__link {
+        flex: 1 1 auto;
+        min-height: 48px;
+        padding: 10px 12px;
+        font-size: 1rem;
+        border-radius: 6px;
+    }
+    .pkp_structure_page .pkp_navigation_primary button.jcrtp-nav__link {
+        justify-content: space-between;
+    }
+    .pkp_structure_page .pkp_navigation_primary .jcrtp-nav__toggle--icon {
+        flex: none;
+        width: 48px;
+        min-height: 48px;
+        border-radius: 6px;
+    }
+    .pkp_structure_page .pkp_navigation_primary .jcrtp-nav__link:hover,
+    .pkp_structure_page .pkp_navigation_primary .jcrtp-nav__toggle--icon:hover {
+        background: rgba(255, 255, 255, .1);
+    }
+    .pkp_structure_page .pkp_navigation_primary > li.is-current > .jcrtp-nav__link {
+        background: var(--jc-nav-active, #7a2fbf);
+    }
+    .pkp_structure_page .pkp_navigation_primary .jcrtp-nav__submenu {
+        flex: 1 0 100%;
+        margin: 0 0 8px;
+        padding: 4px 0;
+        background: rgba(255, 255, 255, .06);
+        border-left: 3px solid var(--jc-nav-active, #7a2fbf);
+        border-radius: 0 6px 6px 0;
+    }
+    .pkp_structure_page .pkp_navigation_primary .jcrtp-nav__submenu a {
+        min-height: 44px;
+        padding: 12px 16px;
+        color: #ffffff;
+        white-space: normal;
+    }
+    .pkp_structure_page .pkp_navigation_primary .jcrtp-nav__submenu a:hover,
+    .pkp_structure_page .pkp_navigation_primary .jcrtp-nav__submenu a:focus-visible {
+        color: #ffffff;
+        background: rgba(255, 255, 255, .1);
+    }
+    .pkp_structure_page .pkp_navigation_primary .jcrtp-nav__submenu a[aria-current="page"] {
+        color: #ffffff;
+        box-shadow: inset 3px 0 0 #ffffff;
+    }
+    .pkp_structure_page .pkp_navigation_primary .jcrtp-nav__submenu a:focus-visible {
+        outline-color: #ffffff;
+    }
+}
+
+
+/* =========================
+
+   5. USER NAVIGATION (lives in the .jcrtp-topbar utility bar, section 1)
+
+   ========================= */
+
+
+
+/* =========================
+
+   6. SEARCH
+
+   ========================= */
+
+.jcrtp-header-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .28);
+    border-radius: 8px;
+    transition: background-color .18s ease, border-color .18s ease;
+}
+.jcrtp-header-search:hover { border-color: rgba(255, 255, 255, .5); }
+.pkp_structure_page .jcrtp-header-search input[type="search"] {
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 44px;
+    margin: 0;
+    padding: 0 14px;
+    color: #ffffff;
+    background: transparent;
+    border: 0;
+    border-radius: 8px;
+    font: inherit;
+    font-size: .92rem;
+    box-shadow: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+.jcrtp-header-search input[type="search"]::-webkit-search-cancel-button { filter: invert(1); }
+.jcrtp-header-search input[type="search"]::placeholder { color: rgba(255, 255, 255, .78); opacity: 1; }
+.pkp_structure_page .jcrtp-header-search button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: 46px;
+    height: 44px;
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+    background: transparent;
+    border: 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 1.15rem;
+    cursor: pointer;
+}
+.pkp_structure_page .jcrtp-header-search button:hover { background: rgba(255, 255, 255, .12); }
+.jcrtp-header-search:focus-within {
+    background: rgba(255, 255, 255, .14);
+    border-color: #ffffff;
+    outline: 2px solid rgba(255, 255, 255, .45);
+    outline-offset: 1px;
+}
+.pkp_structure_page .jcrtp-header-search input[type="search"]:focus,
+.pkp_structure_page .jcrtp-header-search input[type="search"]:focus-visible { outline: none; }
+
+@media (min-width: 992px) {
+    .pkp_structure_page .pkp_navigation_search_wrapper {
+        position: relative;
+        flex: 0 1 clamp(240px, 23vw, 430px);
+        float: none;
+        margin: 0 0 0 auto;
+        padding: 7px 0;
+        border: 0;
+    }
+}
+
+/* 992-1279px: search collapses to a magnifier; focusing the field (click or
+   Tab) expands it over the menu. CSS only, so it also works without JS. */
+@media (min-width: 992px) and (max-width: 1279px) {
+    .pkp_structure_page .pkp_navigation_search_wrapper {
+        flex: 0 0 46px;
+        height: 58px;
+    }
+    .jcrtp-header-search {
+        position: absolute;
+        top: 7px;
+        right: 0;
+        width: 46px;
+        z-index: 1004;
+        transition: width .2s ease, background-color .18s ease;
+    }
+    .pkp_structure_page .jcrtp-header-search input[type="search"] {
+        padding: 0;
+        cursor: pointer;
+    }
+    .jcrtp-header-search input[type="search"]::placeholder { color: transparent; }
+    .pkp_structure_page .jcrtp-header-search button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        pointer-events: none;
+    }
+    .jcrtp-header-search:focus-within {
+        width: min(380px, 40vw);
+        background: var(--jc-nav-bg, #2a1257);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, .3);
+    }
+    .pkp_structure_page .jcrtp-header-search:focus-within input[type="search"] {
+        padding: 0 50px 0 14px;
+        cursor: text;
+    }
+    .jcrtp-header-search:focus-within input[type="search"]::placeholder { color: rgba(255, 255, 255, .78); }
+    .pkp_structure_page .jcrtp-header-search:focus-within button { pointer-events: auto; }
+}
+
+/* Mobile: search sits first in the open drawer, full width. */
+@media (max-width: 991px) {
+    .pkp_structure_page .pkp_navigation_search_wrapper {
+        order: -1;
+        width: 100%;
+        margin: 0 0 10px;
+        padding: 0;
+        border: 0;
+    }
+    .pkp_structure_page .jcrtp-header-search input[type="search"] {
+        height: 48px;
+        font-size: 1rem;
+    }
+    .pkp_structure_page .jcrtp-header-search button {
+        width: 50px;
+        height: 48px;
+    }
+}
+
+/* =========================
+
+   7. MOBILE MENU BUTTON
+
+   ========================= */
+
+
+
+.pkp_structure_page .pkp_site_nav_toggle {
+
+    color: #0b2f5b;
+
+    background: transparent;
+
+}
+
+
+
+.pkp_structure_page .pkp_site_nav_toggle:focus-visible {
+
+    outline: 2px solid #c2187a;
+
+    outline-offset: 2px;
+
+}
+
+
+
+/* =========================
+
+   8. SIDEBAR STRUCTURE
+
+   ========================= */
+
+
+
+.pkp_structure_page .pkp_structure_sidebar {
+    float: none;
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: clamp(24px, 4vw, 44px) 0 32px clamp(20px, 2.5vw, 34px);
+    background: transparent;
+    border: 0;
+    border-left: 1px solid #d9e1ea;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+
+
+.pkp_structure_page .pkp_structure_sidebar::before,
+
+.pkp_structure_page .pkp_structure_sidebar::after {
+
+    display: none;
+
+    content: none;
+
+}
+
+
+
+/* =========================
+
+   9. SIDEBAR CARDS
+
+   ========================= */
+
+
+
+.pkp_structure_page .pkp_structure_sidebar .pkp_block {
+    margin: 0;
+    padding: 17px 0;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #d9e1ea;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+
+
+.pkp_structure_page .pkp_structure_sidebar .pkp_block .title {
+    display: block;
+    margin: 0 0 7px;
+    padding-bottom: 0;
+    color: #0b2f5b;
+    font-family: system-ui, sans-serif;
+    font-size: .72rem;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+
+
+.pkp_structure_page .pkp_structure_sidebar ul {
+
+    list-style: none;
+
+    margin: 0;
+
+    padding: 0;
+
+}
+
+
+
+.pkp_structure_page .pkp_structure_sidebar li {
+
+    margin: 0;
+
+}
+
+
+
+.pkp_structure_page .pkp_structure_sidebar .pkp_block li a {
+
+    display: block;
+
+    margin: 0;
+    padding: 7px 0;
+    color: #273449;
+
+    background: transparent;
+
+    border-radius: 0;
+
+    font-size: .92rem;
+
+    text-decoration: none;
+
+    transition: background-color .2s, color .2s;
+
+}
+
+
+
+.pkp_structure_page .pkp_structure_sidebar .pkp_block li a:hover {
+
+    color: #8d155b;
+    background: transparent;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+}
+
+
+
+/* =========================
+
+   10. MAKE SUBMISSION BUTTON
+
+   ========================= */
+
+
+
+.pkp_structure_page .pkp_structure_sidebar .block_make_submission {
+    margin-top: 18px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+
+
+.pkp_structure_page .pkp_structure_sidebar
+
+.block_make_submission a,
+
+.pkp_structure_page .pkp_structure_sidebar
+.block_make_submission .block_make_submission_link {
+
+    display: block;
+
+    margin: 0;
+
+    padding: 12px 14px;
+
+    color: #ffffff;
+
+    background: #0b2f5b;
+
+    border: 1px solid #0b2f5b;
+
+    border-radius: 2px;
+
+    text-align: center;
+
+    font-size: .92rem;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition: background-color .2s;
+
+}
+
+
+
+.pkp_structure_page .pkp_structure_sidebar
+
+.block_make_submission a:hover,
+
+.pkp_structure_page .pkp_structure_sidebar
+
+.block_make_submission .block_make_submission_link:hover {
+
+    color: #ffffff;
+
+    background: #8d155b;
+    border-color: #8d155b;
+
+}
+
+
+
+/* =========================
+
+   11. FOOTER
+
+   ========================= */
+
+
+
+.pkp_structure_page .pkp_structure_footer_wrapper {
+
+    margin: 0;
+    color: #273449;
+    background: #f7f9fc;
+    border-top: 1px solid #e1e7ef;
+
+}
+
+
+
+.pkp_structure_page .pkp_structure_footer {
+    display: grid;
+    grid-template-columns: minmax(150px, 240px) minmax(0, 1fr);
+    align-items: start;
+    gap: 20px clamp(24px, 4vw, 56px);
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: clamp(28px, 4vw, 52px) var(--jc-gutter, 24px) 24px;
+}
+
+
+
+.pkp_structure_page .pkp_footer_content {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(220px, .8fr);
+    align-items: start;
+    gap: 8px clamp(24px, 5vw, 72px);
+    grid-column: 2;
+    grid-row: 1;
+    padding: 0;
+    font-size: .92rem;
+    line-height: 1.8;
+}
+.pkp_structure_page .pkp_footer_content > p { margin: 0; }
+.pkp_structure_page .pkp_footer_content > p:first-child { grid-column: 1; grid-row: 1; }
+.pkp_structure_page .pkp_footer_content > p:first-child strong { color: #0b2f5b; font: 700 1.25rem/1.35 Georgia, serif; }
+.pkp_structure_page .pkp_footer_content > p:nth-child(2) { grid-column: 2; grid-row: 1; }
+.pkp_structure_page .pkp_footer_content > p:nth-child(n + 3) { grid-column: 1 / -1; }
+.pkp_structure_page .pkp_footer_content > p:nth-child(3) { margin-top: 16px; padding-top: 12px; border-top: 1px solid #d9e1ea; color: #5b6672; font-size: .82rem; }
+
+
+
+.pkp_structure_page .pkp_structure_footer a {
+
+    color: #154f87;
+
+    text-decoration: underline;
+
+    text-underline-offset: 3px;
+
+}
+
+
+
+.pkp_structure_page .pkp_structure_footer a:hover {
+
+    color: #8d155b;
+
+}
+
+
+
+.pkp_structure_page .jcrtp-footer-brand {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 0;
+}
+
+/* White panel so the logo's opaque background reads as intentional on the
+   tinted footer. */
+.pkp_structure_page .jcrtp-footer-brand a {
+    display: inline-block;
+    padding: 8px 10px;
+    line-height: 0;
+    background: #fdfdfd;
+    border: 1px solid #e1e7ef;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.pkp_structure_page .jcrtp-footer-brand img {
+    display: block;
+    width: 100%;
+    max-width: 240px;
+    height: auto;
+    aspect-ratio: 1896 / 830;
+}
+
+.pkp_structure_page .pkp_footer_content:first-child {
+    grid-column: 1 / -1;
+}
+
+.pkp_structure_page .pkp_brand_footer {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: end;
+    margin: 0;
+    opacity: 1;
+}
+
+.pkp_structure_page .pkp_brand_footer img {
+
+    max-width: 110px;
+
+    height: auto;
+
+}
+
+
+
+/* =========================
+
+   12. BACK TO TOP
+
+   ========================= */
+
+
+
+.jcrtp-back-to-top {
+
+    position: fixed;
+
+    right: max(16px, env(safe-area-inset-right));
+
+    bottom: max(16px, env(safe-area-inset-bottom));
+
+    z-index: 50;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 44px;
+
+    min-height: 44px;
+
+    padding: 0 16px;
+
+    color: #ffffff;
+
+    background: #0b2f5b;
+
+    border: 2px solid #ffffff;
+
+    border-radius: 999px;
+
+    box-shadow: 0 6px 18px rgba(6, 33, 63, .3);
+
+    font-size: .8rem;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+}
+
+
+
+.jcrtp-back-to-top:hover {
+
+    color: #ffffff;
+
+    background: #a91469;
+
+}
+
+
+
+.jcrtp-back-to-top[hidden] {
+
+    display: none !important;
+
+}
+
+
+
+/* =========================
+
+   13. TABLET AND MOBILE
+
+   ========================= */
+
+
+
+@media (max-width: 991px) {
+
+
+
+    .pkp_structure_page .pkp_navigation_user > li > a {
+
+        color: #ffffff;
+
+    }
+
+
+
+    .pkp_structure_page .pkp_search {
+
+        color: #ffffff;
+
+    }
+
+    .pkp_structure_page .pkp_structure_sidebar {
+        padding-left: 0;
+        border-left: 0;
+    }
+
+
+
+    .pkp_structure_page .pkp_structure_sidebar {
+        padding-top: 26px;
+        padding-bottom: 32px;
+        gap: 0;
+    }
+
+    /* Tablet footer: logo above the configured footer content. */
+    .pkp_structure_page .pkp_structure_footer {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .pkp_structure_page .pkp_structure_footer .jcrtp-footer-brand,
+    .pkp_structure_page .pkp_structure_footer .pkp_footer_content,
+    .pkp_structure_page .pkp_structure_footer .pkp_brand_footer {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    .pkp_structure_page .pkp_structure_footer .jcrtp-footer-brand {
+        justify-self: start;
+    }
+
+}
+
+@media (max-width: 600px) {
+    .pkp_structure_page .pkp_structure_footer {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .pkp_structure_page .pkp_footer_content {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 12px;
+    }
+
+    .pkp_structure_page .pkp_footer_content > p:first-child,
+    .pkp_structure_page .pkp_footer_content > p:nth-child(2),
+    .pkp_structure_page .pkp_footer_content > p:nth-child(n + 3) {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    .pkp_structure_page .pkp_structure_footer .jcrtp-footer-brand,
+    .pkp_structure_page .pkp_structure_footer .pkp_footer_content,
+    .pkp_structure_page .pkp_structure_footer .pkp_brand_footer {
+        grid-column: 1;
+        grid-row: auto;
+        justify-self: start;
+    }
+
+    .pkp_structure_page .jcrtp-footer-brand img {
+        max-width: 190px;
+    }
+}
+
+@media (max-width: 768px) {
+
+
+
+    .pkp_structure_page .pkp_structure_sidebar .pkp_block {
+
+        padding: 17px 0;
+
+    }
+
+}
+
+
+
+@media (max-width: 576px) {
+
+
+
+    .pkp_structure_page .pkp_site_name a.is_text {
+
+        font-size: 1.3rem;
+
+    }
+
+
+
+    .pkp_structure_page .pkp_structure_sidebar .pkp_block {
+
+        padding: 17px 0;
+
+    }
+
+
+
+    .pkp_structure_page .pkp_structure_sidebar
+
+    .block_make_submission a {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        min-height: 44px;
+
+    }
+
+
+
+    .pkp_structure_page .pkp_structure_footer {
+
+        padding-left: 16px;
+
+        padding-right: 16px;
+
+    }
+
+}
+
+
+
+/* =========================
+
+   END OF CHROME.CSS
+
+   ========================= */
+
+
+
+
+/* Avoid a horizontal scrollbar caused by viewport-width rounding. */
+.pkp_structure_page { overflow-x: clip; }

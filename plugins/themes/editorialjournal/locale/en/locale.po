@@ -1,0 +1,247 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: JCRTP Responsive 1.1\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "plugins.themes.editorialjournal.name"
+msgstr "JCRTP Responsive"
+
+msgid "plugins.themes.editorialjournal.description"
+msgstr "A responsive navy-and-magenta journal theme with OJS content, article filtering, and reading navigation."
+
+msgid "plugins.themes.editorialjournal.hero.eyebrow"
+msgstr "Advancing Cancer Research"
+
+msgid "plugins.themes.editorialjournal.hero.titleLead"
+msgstr "Research Today for a"
+
+msgid "plugins.themes.editorialjournal.hero.titleAccent"
+msgstr "Healthier Tomorrow"
+
+msgid "plugins.themes.editorialjournal.hero.factsLabel"
+msgstr "Journal at a glance"
+
+msgid "plugins.themes.editorialjournal.hero.latestIssue"
+msgstr "Latest Issue"
+
+msgid "plugins.themes.editorialjournal.hero.publishedArticles"
+msgstr "Published Articles"
+
+msgid "plugins.themes.editorialjournal.hero.openAccessValue"
+msgstr "Free to read"
+
+msgid "plugins.themes.editorialjournal.hero.submissions"
+msgstr "Submissions"
+
+msgid "plugins.themes.editorialjournal.hero.submissionsOpen"
+msgstr "Now accepting"
+
+msgid "plugins.themes.editorialjournal.features.label"
+msgstr "What the journal offers"
+
+msgid "plugins.themes.editorialjournal.features.quality.title"
+msgstr "High-Quality Research"
+
+msgid "plugins.themes.editorialjournal.features.quality.copy"
+msgstr "Rigorous scientific inquiry and ethical research"
+
+msgid "plugins.themes.editorialjournal.features.global.title"
+msgstr "Global Perspectives"
+
+msgid "plugins.themes.editorialjournal.features.global.copy"
+msgstr "Multidisciplinary collaboration in cancer care"
+
+msgid "plugins.themes.editorialjournal.features.openAccess.copy"
+msgstr "Free access for all readers"
+
+msgid "plugins.themes.editorialjournal.features.impact.title"
+msgstr "Focus on Impact"
+
+msgid "plugins.themes.editorialjournal.features.impact.copy"
+msgstr "Translating research into clinical practice"
+
+msgid "plugins.themes.editorialjournal.home.asideLabel"
+msgstr "Announcements and links"
+
+msgid "plugins.themes.editorialjournal.home.viewCurrentIssue"
+msgstr "View Current Issue"
+
+msgid "plugins.themes.editorialjournal.home.browseArchives"
+msgstr "Browse Archives"
+
+msgid "plugins.themes.editorialjournal.home.viewAllArticles"
+msgstr "View All Articles"
+
+msgid "plugins.themes.editorialjournal.home.noArticles"
+msgstr "No articles have been published yet. New articles will appear here as soon as they are published."
+
+msgid "plugins.themes.editorialjournal.home.authorGuidelines"
+msgstr "Author Guidelines"
+
+msgid "plugins.themes.editorialjournal.home.importantLinks"
+msgstr "Important Links"
+
+msgid "plugins.themes.editorialjournal.home.contactUs"
+msgstr "Contact Us"
+
+msgid "plugins.themes.editorialjournal.hero.copy"
+msgstr "Explore published research, discover the journal, and find guidance for contributing your work."
+
+msgid "plugins.themes.editorialjournal.research"
+msgstr "Research articles"
+
+msgid "plugins.themes.editorialjournal.latestArticles"
+msgstr "Latest Articles"
+
+msgid "plugins.themes.editorialjournal.articleReadAbstract"
+msgstr "Read article and abstract"
+
+msgid "plugins.themes.editorialjournal.authorInformation"
+msgstr "Author information"
+
+msgid "plugins.themes.editorialjournal.viewIssue"
+msgstr "Explore this issue"
+
+msgid "plugins.themes.editorialjournal.browseArticles"
+msgstr "Browse articles"
+
+msgid "plugins.themes.editorialjournal.filter.label"
+msgstr "Find an article in this issue"
+
+msgid "plugins.themes.editorialjournal.filter.placeholder"
+msgstr "Filter by title or author…"
+
+msgid "plugins.themes.editorialjournal.filter.clear"
+msgstr "Clear"
+
+msgid "plugins.themes.editorialjournal.filter.count"
+msgstr "Showing :visible of :total articles"
+
+msgid "plugins.themes.editorialjournal.filter.empty"
+msgstr "No articles in this issue match your search. Clear the filter or use the journal search above."
+
+msgid "plugins.themes.editorialjournal.search.label"
+msgstr "Search the journal"
+
+msgid "plugins.themes.editorialjournal.search.placeholder"
+msgstr "Search across published articles…"
+
+msgid "plugins.themes.editorialjournal.header.tagline"
+msgstr "An International Peer-Reviewed Open Access Journal"
+
+msgid "plugins.themes.editorialjournal.header.openAccess"
+msgstr "Open Access"
+
+msgid "plugins.themes.editorialjournal.header.searchPlaceholder"
+msgstr "Search articles, authors, keywords…"
+
+msgid "plugins.themes.editorialjournal.header.submitManuscript"
+msgstr "Submit Manuscript"
+
+msgid "plugins.themes.editorialjournal.nav.account"
+msgstr "Account"
+
+msgid "plugins.themes.editorialjournal.nav.openMenu"
+msgstr "Menu"
+
+msgid "plugins.themes.editorialjournal.nav.submenu"
+msgstr "{$name} submenu"
+
+msgid "plugins.themes.editorialjournal.nav.home"
+msgstr "Home"
+
+msgid "plugins.themes.editorialjournal.nav.about"
+msgstr "About"
+
+msgid "plugins.themes.editorialjournal.nav.currentIssue"
+msgstr "Current Issue"
+
+msgid "plugins.themes.editorialjournal.nav.archives"
+msgstr "Archives"
+
+msgid "plugins.themes.editorialjournal.nav.editorialBoard"
+msgstr "Editorial Board"
+
+msgid "plugins.themes.editorialjournal.nav.forAuthors"
+msgstr "For Authors"
+
+msgid "plugins.themes.editorialjournal.nav.editorialProcess"
+msgstr "Editorial Process"
+
+msgid "plugins.themes.editorialjournal.nav.policies"
+msgstr "Policies"
+
+msgid "plugins.themes.editorialjournal.nav.contact"
+msgstr "Contact"
+
+msgid "plugins.themes.editorialjournal.printIssn"
+msgstr "Print ISSN"
+
+msgid "plugins.themes.editorialjournal.onlineIssn"
+msgstr "Online ISSN"
+
+msgid "plugins.themes.editorialjournal.explore"
+msgstr "Explore the journal"
+
+msgid "plugins.themes.editorialjournal.learnMore"
+msgstr "Learn more"
+
+msgid "plugins.themes.editorialjournal.about.copy"
+msgstr "Read the journal's scope, policies, and publication information."
+
+msgid "plugins.themes.editorialjournal.editors.copy"
+msgstr "Meet the people responsible for the journal's editorial work."
+
+msgid "plugins.themes.editorialjournal.board.heading"
+msgstr "Editorial Board"
+
+msgid "plugins.themes.editorialjournal.board.membersHeading"
+msgstr "Board members"
+
+msgid "plugins.themes.editorialjournal.board.memberRole"
+msgstr "Editorial Board Member"
+
+msgid "plugins.themes.editorialjournal.board.portraitAlt"
+msgstr "Portrait of {$name}"
+
+msgid "plugins.themes.editorialjournal.board.appointments"
+msgstr "Professional appointments"
+
+msgid "plugins.themes.editorialjournal.board.biography"
+msgstr "Biography"
+
+msgid "plugins.themes.editorialjournal.board.expertise"
+msgstr "Areas of expertise"
+
+msgid "plugins.themes.editorialjournal.submissions.copy"
+msgstr "Review the author guidelines and submission requirements."
+
+msgid "plugins.themes.editorialjournal.archive.heading"
+msgstr "Explore the journal archive."
+
+msgid "plugins.themes.editorialjournal.archive.copy"
+msgstr "Browse past volumes and issues, and find research by publication."
+
+msgid "plugins.themes.editorialjournal.allAnnouncements"
+msgstr "All announcements"
+
+msgid "plugins.themes.editorialjournal.backToTop"
+msgstr "Back to top"
+
+msgid "plugins.themes.editorialjournal.articleNavigation"
+msgstr "On this page"
+
+msgid "plugins.themes.editorialjournal.option.primary"
+msgstr "Primary colour (navy)"
+
+msgid "plugins.themes.editorialjournal.option.accent"
+msgstr "Accent colour (magenta)"
+
+msgid "plugins.themes.editorialjournal.option.filter"
+msgstr "Current issue article filter"
+
+msgid "plugins.themes.editorialjournal.option.filter.enabled"
+msgstr "Let readers filter the current issue by title or author"
