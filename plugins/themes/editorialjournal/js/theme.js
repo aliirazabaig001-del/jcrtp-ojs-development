@@ -2,52 +2,62 @@
 (() => {
     'use strict';
 
-    function setupFilter() {
-        const research = document.querySelector('.jcrtp-research');
-        const filter = research?.querySelector('.jcrtp-filter');
-        if (!filter) return;
-        const input = filter.querySelector('input[type="search"]');
-        const status = filter.querySelector('.jcrtp-filter__status');
-        const empty = research.querySelector('.jcrtp-filter__empty');
-        const items = [...research.querySelectorAll('.cmp_article_list > li')]
-            .filter(item => item.querySelector('.obj_article_summary'));
-        if (!items.length || !input || !status) return;
+    /* Issue page: section tabs and in-issue search over the article rows.
+       Without JS every article stays listed and the controls stay hidden. */
+    function setupIssueTools(labels) {
+        const list = document.querySelector('.jcrtp-issue-list');
+        if (!list) return;
+        const rows = [...list.querySelectorAll(':scope > .jcrtp-issue-row')];
+        const tabs = document.querySelector('.jcrtp-issue-tabs');
+        const search = document.querySelector('.jcrtp-issue-search');
+        const input = search?.querySelector('input[type="search"]');
+        const status = document.querySelector('.jcrtp-issue-status');
+        const noMatch = document.querySelector('.jcrtp-issue-nomatch');
+        if (!rows.length || (!tabs && !input)) return;
 
         const normalize = text => text.normalize('NFKD').toLocaleLowerCase()
             .replace(/[\u0300-\u036f]/g, '');
-        const searchable = items.map(item => ({
-            item,
+        const searchable = rows.map(row => ({
+            row,
+            section: row.dataset.section || '',
             text: normalize([
-                item.querySelector('.title')?.textContent || '',
-                item.querySelector('.authors')?.textContent || '',
+                row.querySelector('.jcrtp-issue-row__title')?.textContent || '',
+                row.querySelector('.jcrtp-issue-row__authors')?.getAttribute('title') || '',
+                row.querySelector('.jcrtp-issue-row__authors')?.textContent || '',
             ].join(' ')),
         }));
-        const sections = [...research.querySelectorAll('.obj_issue_toc .section')];
-        const countTemplate = status.dataset.countTemplate;
+        let activeSection = '';
+
         function update() {
-            const terms = normalize(input.value.trim()).split(/\s+/).filter(Boolean);
+            const terms = input ? normalize(input.value.trim()).split(/\s+/).filter(Boolean) : [];
             let visible = 0;
-            searchable.forEach(({item, text}) => {
-                item.hidden = !terms.every(term => text.includes(term));
-                if (!item.hidden) visible++;
+            searchable.forEach(({row, section, text}) => {
+                row.hidden = !((!activeSection || section === activeSection)
+                    && terms.every(term => text.includes(term)));
+                if (!row.hidden) visible++;
             });
-            sections.forEach(section => {
-                const children = [...section.querySelectorAll('.cmp_article_list > li')];
-                section.hidden = children.length > 0 && children.every(item => item.hidden);
-            });
-            if (countTemplate) {
-                status.textContent = countTemplate.replace(':visible', visible).replace(':total', items.length);
-            }
-            if (empty) empty.hidden = visible !== 0;
+            if (noMatch) noMatch.hidden = visible !== 0;
+            if (status && labels.issueMatches) status.textContent = labels.issueMatches.replace('{count}', visible);
         }
-        filter.hidden = false;
-        input.addEventListener('input', update);
-        filter.querySelector('.jcrtp-filter__clear')?.addEventListener('click', () => {
-            input.value = '';
-            update();
-            input.focus();
-        });
-        update();
+
+        if (tabs) {
+            tabs.hidden = false;
+            tabs.addEventListener('click', event => {
+                const tab = event.target.closest('.jcrtp-issue-tabs__tab');
+                if (!tab) return;
+                activeSection = tab.dataset.section || '';
+                tabs.querySelectorAll('.jcrtp-issue-tabs__tab').forEach(other => {
+                    const active = other === tab;
+                    other.classList.toggle('is-active', active);
+                    other.setAttribute('aria-pressed', active ? 'true' : 'false');
+                });
+                update();
+            });
+        }
+        if (input) {
+            search.hidden = false;
+            input.addEventListener('input', update);
+        }
     }
 
     function setupReadingNavigation(labels) {
@@ -209,7 +219,7 @@
 
     function init() {
         const labels = window.JCRTPThemeLabels || {};
-        setupFilter();
+        setupIssueTools(labels);
         setupReadingNavigation(labels);
         setupBackToTop(labels);
         setupMobileAccessibility();

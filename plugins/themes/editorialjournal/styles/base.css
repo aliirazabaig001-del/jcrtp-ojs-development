@@ -66,6 +66,31 @@ body { background: #eef2f7; }
     color: var(--jc-text);
 }
 .pkp_structure_main::before, .pkp_structure_main::after { display: none; content: none; }
+/* The parent theme centres a sidebar-less main column with auto margins
+   (".pkp_structure_main:first-child:last-child"). Inside this theme's grid
+   that turns the column shrink-to-fit, so pages such as Contact collapsed to
+   a few words wide. The column now always fills its grid track. */
+.pkp_structure_page .pkp_structure_main:first-child:last-child {
+    width: auto;
+    margin: 0;
+}
+/* Default OJS pages keep a comfortable reading width, centred. */
+.pkp_structure_main > .page_contact,
+.pkp_structure_main > .page_privacy,
+.pkp_structure_main > .page_submissions,
+.pkp_structure_main > .page_announcements,
+.pkp_structure_main > .page_announcement,
+.pkp_structure_main > .page_search,
+.pkp_structure_main > .page_issue_archive,
+.pkp_structure_main > .page_login,
+.pkp_structure_main > .page_register,
+.pkp_structure_main > .page_lost_password,
+.pkp_structure_main > .page_information,
+.pkp_structure_main > .page_static {
+    max-width: 1040px;
+    margin-right: auto;
+    margin-left: auto;
+}
 .pkp_structure_main > .page,
 .pkp_structure_main > .page_index_journal { padding: 0; background: transparent; }
 

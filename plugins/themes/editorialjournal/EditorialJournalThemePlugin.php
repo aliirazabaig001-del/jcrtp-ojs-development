@@ -28,6 +28,8 @@ class EditorialJournalThemePlugin extends ThemePlugin
         Hook::add('TemplateManager::display', $this->addJcrtpBranding(...));
         Hook::add('TemplateManager::display', $this->registerNavigationModifier(...));
         Hook::add('TemplateManager::display', $this->assignHomepageData(...));
+        Hook::add('TemplateManager::display', $this->assignAboutData(...));
+        Hook::add('TemplateManager::display', $this->assignIssueData(...));
         Hook::add('LoadHandler', $this->registerEditorialProcessHandler(...));
 
         $this->addOption('jcrtpPrimaryColour', 'FieldColor', [
@@ -56,6 +58,13 @@ class EditorialJournalThemePlugin extends ThemePlugin
             ]);
         }
 
+        // Optional list for the About page's "Indexing & Abstracting" card.
+        // Only services the editor enters are shown; nothing is listed by default.
+        $this->addOption('indexingServices', 'FieldTextarea', [
+            'label' => __('plugins.themes.editorialjournal.option.indexing'),
+            'description' => __('plugins.themes.editorialjournal.option.indexing.description'),
+        ]);
+
         // Plain CSS avoids a build step on the OJS server. Child styles load
         // after the parent stylesheet and only affect the reader-facing site.
         $this->addStyle('editorial-base', 'styles/base.css');
@@ -63,6 +72,7 @@ class EditorialJournalThemePlugin extends ThemePlugin
         $this->addStyle('editorial-footer', 'styles/footer.css');
         $this->addStyle('editorial-home', 'styles/home.css');
         $this->addStyle('editorial-content', 'styles/content.css');
+        $this->addStyle('editorial-inner', 'styles/inner.css');
         $this->addStyle('editorial-board', 'styles/editorial-board.css');
         $this->addStyle('editorial-process', 'styles/editorial-process.css');
         $this->addStyle('editorial-responsive', 'styles/responsive.css');
@@ -74,6 +84,7 @@ class EditorialJournalThemePlugin extends ThemePlugin
         $labels = json_encode([
             'backToTop' => __('plugins.themes.editorialjournal.backToTop'),
             'articleNavigation' => __('plugins.themes.editorialjournal.articleNavigation'),
+            'issueMatches' => __('plugins.themes.editorialjournal.issue.matches', ['count' => '{count}']),
         ], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
         $this->addScript('jcrtp-labels', 'window.JCRTPThemeLabels=' . $labels . ';', ['inline' => true]);
         $this->addScript('jcrtp-enhancements', 'js/theme.js');
@@ -239,6 +250,199 @@ class EditorialJournalThemePlugin extends ThemePlugin
             'jcrtpSectionTitles' => $sectionTitles,
             'jcrtpPublishedArticleCount' => $latestArticles ? $publishedCollector()->getCount() : 0,
             'jcrtpHeroSummary' => $this->firstSentence((string) $context->getLocalizedData('description')),
+        ]);
+
+        return Hook::CONTINUE;
+    }
+
+    /**
+     * About page (frontend/pages/about.tpl). The journal's own "About" text is
+     * split at its h2/h3 headings so each part can be laid out as in
+     * design-references/about-journal-desktop.png; the Key Information,
+     * Indexing and Contact cards list only values held by OJS or entered in
+     * the theme settings.
+     */
+    public function assignAboutData($hookName, $args): bool
+    {
+        $templateManager = $args[0];
+        if ($args[1] !== 'frontend/pages/about.tpl') {
+            return Hook::CONTINUE;
+        }
+        $context = \APP\core\Application::get()->getRequest()->getContext();
+        if (!$context) {
+            return Hook::CONTINUE;
+        }
+
+        [$intro, $sections] = $this->splitAboutContent((string) $context->getLocalizedData('about'));
+
+        $keyInfo = [];
+        foreach (['onlineIssn' => 'onlineIssn', 'printIssn' => 'printIssn'] as $field => $key) {
+            if ($value = trim((string) $context->getData($field))) {
+                $keyInfo[] = ['label' => __('plugins.themes.editorialjournal.' . $key), 'value' => $value];
+            }
+        }
+        if ($context->getData('publishingMode') == \APP\journal\Journal::PUBLISHING_MODE_OPEN) {
+            $keyInfo[] = ['label' => __('plugins.themes.editorialjournal.header.openAccess'), 'value' => __('common.yes')];
+        }
+        if ($context->getData('paymentsEnabled') && (float) $context->getData('publicationFee') > 0) {
+            $keyInfo[] = [
+                'label' => (string) $context->getLocalizedData('publicationFeeName') ?: __('plugins.themes.editorialjournal.about.apc'),
+                'value' => trim($context->getData('publicationFee') . ' ' . $context->getData('currency')),
+            ];
+        }
+        $localeNames = array_filter(array_map(
+            fn ($locale) => \PKP\facades\Locale::getMetadata($locale)?->getDisplayName(null),
+            (array) $context->getData('supportedLocales')
+        ));
+        if ($localeNames) {
+            $keyInfo[] = ['label' => __('plugins.themes.editorialjournal.about.language'), 'value' => implode(', ', $localeNames)];
+        }
+        if ($publisher = trim((string) $context->getData('publisherInstitution'))) {
+            $keyInfo[] = ['label' => __('plugins.themes.editorialjournal.about.publisher'), 'value' => $publisher];
+        }
+
+        $templateManager->assign([
+            'jcrtpAboutIntro' => $intro,
+            'jcrtpAboutSections' => $sections,
+            'jcrtpAboutSummary' => $this->firstSentence((string) $context->getLocalizedData('description')),
+            'jcrtpKeyInfo' => $keyInfo,
+            'jcrtpIndexingServices' => $this->parseIndexingServices((string) $this->getOption('indexingServices')),
+        ]);
+
+        return Hook::CONTINUE;
+    }
+
+    /**
+     * Split journal "About" HTML at its h2/h3 headings.
+     *
+     * @return array{0: string, 1: array<int, array{id: string, title: string, level: int, html: string, icon: string}>}
+     */
+    protected function splitAboutContent(string $html): array
+    {
+        if (trim(strip_tags($html)) === '') {
+            return ['', []];
+        }
+        $document = new \DOMDocument();
+        $previous = libxml_use_internal_errors(true);
+        $document->loadHTML('<?xml encoding="UTF-8"><div id="jcrtp-about-root">' . $html . '</div>', LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        libxml_clear_errors();
+        libxml_use_internal_errors($previous);
+        $root = $document->getElementById('jcrtp-about-root');
+        if (!$root) {
+            return [$html, []];
+        }
+
+        $intro = '';
+        $sections = [];
+        $usedIds = [];
+        foreach (iterator_to_array($root->childNodes) as $node) {
+            $isHeading = $node instanceof \DOMElement && in_array(strtolower($node->nodeName), ['h2', 'h3'], true);
+            if ($isHeading && trim($node->textContent) !== '') {
+                $title = trim(preg_replace('/\s+/u', ' ', $node->textContent));
+                $id = 'about-' . (trim(preg_replace('/[^a-z0-9]+/', '-', strtolower($title)), '-') ?: 'section');
+                for ($base = $id, $n = 2; isset($usedIds[$id]); $n++) {
+                    $id = $base . '-' . $n;
+                }
+                $usedIds[$id] = true;
+                $sections[] = ['id' => $id, 'title' => $title, 'level' => (int) substr(strtolower($node->nodeName), 1), 'html' => '', 'icon' => $this->aboutSectionIcon($title)];
+                continue;
+            }
+            $markup = $document->saveHTML($node);
+            if ($sections) {
+                $sections[count($sections) - 1]['html'] .= $markup;
+            } else {
+                $intro .= $markup;
+            }
+        }
+        return [trim($intro), $sections];
+    }
+
+    /** Icon for an About section, chosen from its heading. */
+    protected function aboutSectionIcon(string $title): string
+    {
+        $title = strtolower($title);
+        return match (true) {
+            str_contains($title, 'mission') => 'mission',
+            str_contains($title, 'vision') => 'vision',
+            str_contains($title, 'value') => 'values',
+            str_contains($title, 'scope') || str_contains($title, 'aim') => 'scope',
+            str_contains($title, 'histor') => 'history',
+            default => 'document',
+        };
+    }
+
+    /**
+     * Theme setting "Indexing services": one service per line, optionally
+     * "Name | https://link".
+     *
+     * @return array<int, array{name: string, url: ?string}>
+     */
+    protected function parseIndexingServices(string $value): array
+    {
+        $services = [];
+        foreach (preg_split('/\R/u', $value) as $line) {
+            $parts = array_map('trim', explode('|', $line, 2));
+            if ($parts[0] === '') {
+                continue;
+            }
+            $url = $parts[1] ?? '';
+            $services[] = [
+                'name' => $parts[0],
+                'url' => preg_match('#^https?://#i', $url) && filter_var($url, FILTER_VALIDATE_URL) ? $url : null,
+            ];
+        }
+        return $services;
+    }
+
+    /**
+     * Issue page (frontend/pages/issue.tpl): counts, page range and section
+     * list for the layout of design-references/current-issue-desktop.png,
+     * derived from the articles OJS assigned to the template.
+     */
+    public function assignIssueData($hookName, $args): bool
+    {
+        $templateManager = $args[0];
+        if ($args[1] !== 'frontend/pages/issue.tpl') {
+            return Hook::CONTINUE;
+        }
+        $issue = $templateManager->getTemplateVars('issue');
+        $context = \APP\core\Application::get()->getRequest()->getContext();
+        if (!$issue || !$context) {
+            return Hook::CONTINUE;
+        }
+
+        $sections = [];
+        $articleCount = 0;
+        $firstPage = null;
+        $lastPage = null;
+        $pagesKnown = true;
+        foreach ((array) $templateManager->getTemplateVars('publishedSubmissions') as $sectionId => $section) {
+            $count = count($section['articles'] ?? []);
+            if (!$count) {
+                continue;
+            }
+            $articleCount += $count;
+            $sections[] = ['id' => (int) $sectionId, 'title' => (string) ($section['title'] ?? ''), 'count' => $count];
+            foreach ($section['articles'] as $article) {
+                $pages = trim((string) $article->getCurrentPublication()?->getData('pages'));
+                if (preg_match('/^(\d+)\s*[-\x{2013}]\s*(\d+)$/u', $pages, $m) || preg_match('/^(\d+)$/', $pages, $m)) {
+                    $start = (int) $m[1];
+                    $end = (int) ($m[2] ?? $m[1]);
+                    $firstPage = $firstPage === null ? $start : min($firstPage, $start);
+                    $lastPage = $lastPage === null ? $end : max($lastPage, $end);
+                } else {
+                    $pagesKnown = false;
+                }
+            }
+        }
+
+        $currentIssue = \APP\facades\Repo::issue()->getCurrent($context->getId());
+        $templateManager->assign([
+            'jcrtpIssueSections' => $sections,
+            'jcrtpIssueArticleCount' => $articleCount,
+            'jcrtpIssuePageRange' => $pagesKnown && $firstPage !== null ? $firstPage . '–' . $lastPage : '',
+            'jcrtpIsCurrentIssue' => $currentIssue && $currentIssue->getId() === $issue->getId(),
+            'jcrtpIssueFilter' => (bool) $this->getOption('enableIssueFilter'),
         ]);
 
         return Hook::CONTINUE;

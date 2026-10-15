@@ -18,7 +18,8 @@
     padding: 0;
 }
 
-.jcrtp-home {
+.jcrtp-home,
+.jcrtp-inner {
     --home-max: 1440px;
     --home-gutter: clamp(16px, 3vw, 48px);
     --home-inline: max(var(--home-gutter), calc((100% - var(--home-max)) / 2 + var(--home-gutter)));
@@ -48,7 +49,7 @@
 .jcrtp-home ol { margin: 0; }
 
 /* ---------- Buttons ---------- */
-.jcrtp-home a.jcrtp-btn {
+:is(.jcrtp-home, .jcrtp-inner) a.jcrtp-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -62,51 +63,51 @@
     text-decoration: none;
     transition: background-color .18s ease, color .18s ease, border-color .18s ease, box-shadow .18s ease, transform .18s ease;
 }
-.jcrtp-home a.jcrtp-btn--primary {
+:is(.jcrtp-home, .jcrtp-inner) a.jcrtp-btn--primary {
     color: #ffffff;
     background: linear-gradient(135deg, var(--home-purple-deep), var(--home-violet));
     box-shadow: 0 8px 18px rgba(107, 31, 168, .3);
 }
-.jcrtp-home a.jcrtp-btn--primary:hover,
-.jcrtp-home a.jcrtp-btn--primary:focus-visible {
+:is(.jcrtp-home, .jcrtp-inner) a.jcrtp-btn--primary:hover,
+:is(.jcrtp-home, .jcrtp-inner) a.jcrtp-btn--primary:focus-visible {
     color: #ffffff;
     background: linear-gradient(135deg, #3b1263, var(--home-purple));
     box-shadow: 0 10px 22px rgba(107, 31, 168, .38);
     transform: translateY(-1px);
 }
-.jcrtp-home a.jcrtp-btn--ghost {
+:is(.jcrtp-home, .jcrtp-inner) a.jcrtp-btn--ghost {
     color: var(--home-navy);
     background: rgba(255, 255, 255, .92);
     border-color: #c9b6e4;
 }
-.jcrtp-home a.jcrtp-btn--ghost:hover,
-.jcrtp-home a.jcrtp-btn--ghost:focus-visible {
+:is(.jcrtp-home, .jcrtp-inner) a.jcrtp-btn--ghost:hover,
+:is(.jcrtp-home, .jcrtp-inner) a.jcrtp-btn--ghost:focus-visible {
     color: var(--home-purple-deep);
     background: #ffffff;
     border-color: var(--home-purple);
 }
-.jcrtp-home a.jcrtp-btn--outline {
+:is(.jcrtp-home, .jcrtp-inner) a.jcrtp-btn--outline {
     color: var(--home-purple-deep);
     background: #ffffff;
     border-color: #c9b6e4;
 }
-.jcrtp-home a.jcrtp-btn--outline:hover,
-.jcrtp-home a.jcrtp-btn--outline:focus-visible {
+:is(.jcrtp-home, .jcrtp-inner) a.jcrtp-btn--outline:hover,
+:is(.jcrtp-home, .jcrtp-inner) a.jcrtp-btn--outline:focus-visible {
     color: #ffffff;
     background: var(--home-purple-deep);
     border-color: var(--home-purple-deep);
 }
-.jcrtp-home a.jcrtp-btn--small {
+:is(.jcrtp-home, .jcrtp-inner) a.jcrtp-btn--small {
     min-height: 44px;
     padding: 10px 14px;
     font: 600 .86rem/1.2 var(--jc-sans, system-ui, sans-serif);
 }
-.jcrtp-home a.jcrtp-btn:focus-visible {
+:is(.jcrtp-home, .jcrtp-inner) a.jcrtp-btn:focus-visible {
     outline: 3px solid var(--home-violet);
     outline-offset: 3px;
 }
 
-.jcrtp-home a.jcrtp-more-link {
+:is(.jcrtp-home, .jcrtp-inner) a.jcrtp-more-link {
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -115,8 +116,8 @@
     text-decoration: none;
     white-space: nowrap;
 }
-.jcrtp-home a.jcrtp-more-link:hover,
-.jcrtp-home a.jcrtp-more-link:focus-visible {
+:is(.jcrtp-home, .jcrtp-inner) a.jcrtp-more-link:hover,
+:is(.jcrtp-home, .jcrtp-inner) a.jcrtp-more-link:focus-visible {
     color: var(--home-purple-deep);
     text-decoration: underline;
     text-underline-offset: 3px;
@@ -448,7 +449,7 @@
     border: 1px dashed #d4c6e8;
     border-radius: var(--home-radius);
 }
-.jcrtp-home .jcrtp-empty p {
+:is(.jcrtp-home, .jcrtp-inner) .jcrtp-empty p {
     color: var(--home-muted);
     font-size: .95rem;
     line-height: 1.6;
@@ -712,7 +713,7 @@
 @media (max-width: 599px) {
     .jcrtp-facts { grid-template-columns: minmax(0, 1fr); }
     .jcrtp-hero__actions { flex-direction: column; align-items: stretch; }
-    .jcrtp-home a.jcrtp-btn { width: 100%; }
+    :is(.jcrtp-home, .jcrtp-inner) a.jcrtp-btn { width: 100%; }
     .jcrtp-current__card {
         grid-template-columns: minmax(0, 1fr);
     }
