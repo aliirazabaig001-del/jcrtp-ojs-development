@@ -12,9 +12,9 @@
     {include file="frontend/components/jcrtp/pageBanner.tpl" bannerTitle=$announcement->getLocalizedData('title')|escape bannerSummary="" bannerCrumbs=$jcrtpBannerCrumbs bannerCurrent="" bannerEyebrow="" bannerSubtitle=""}
 
     <div class="jcrtp-inner__body jcrtp-doc__layout">
-        <aside class="jcrtp-doc__nav">
+        <div class="jcrtp-doc__nav">
             {include file="frontend/components/jcrtp/infoLinks.tpl" current="announcements"}
-        </aside>
+        </div>
         <article class="jcrtp-doc__main obj_announcement_full">
             <p class="date jcrtp-doc__date"><time datetime="{$announcement->datePosted->format('Y-m-d')}">{$announcement->datePosted->format('j F Y')}</time></p>
             {if $announcement->image}

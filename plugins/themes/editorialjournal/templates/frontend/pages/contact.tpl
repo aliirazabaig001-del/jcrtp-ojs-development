@@ -15,9 +15,9 @@
     {include file="frontend/components/jcrtp/pageBanner.tpl" bannerTitle=$jcrtpBannerTitle bannerSummary=$jcrtpBannerSummary bannerCrumbs="" bannerCurrent="" bannerEyebrow="" bannerSubtitle=""}
 
     <div class="jcrtp-inner__body jcrtp-doc__layout">
-        <aside class="jcrtp-doc__nav">
+        <div class="jcrtp-doc__nav">
             {include file="frontend/components/jcrtp/infoLinks.tpl" current="contact"}
-        </aside>
+        </div>
 
         <div class="jcrtp-doc__main">
             {include file="frontend/components/editLink.tpl" page="management" op="settings" path="context" anchor="contact" sectionTitleKey="about.contact"}

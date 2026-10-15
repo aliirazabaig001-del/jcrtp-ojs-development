@@ -22,40 +22,29 @@ class EditorialProcessHandler extends \APP\handler\Handler
 
     public function index($args, $request): void
     {
-        $content = file_get_contents(__DIR__ . '/data/editorial-process.html');
-        if ($content === false) {
-            throw new \RuntimeException('Unable to read the Editorial Process page content.');
-        }
-
         $dispatcher = $request->getDispatcher();
-        $submissionsUrl = $dispatcher->url(
-            $request,
-            Application::ROUTE_PAGE,
-            null,
-            'about',
-            'submissions'
-        );
-        $contactUrl = $dispatcher->url(
-            $request,
-            Application::ROUTE_PAGE,
-            null,
-            'about',
-            'contact'
-        );
-        $content = str_replace(
-            ['href="../../about/submissions"', 'href="../../about/contact"'],
-            [
-                'href="' . htmlspecialchars($submissionsUrl, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . '"',
-                'href="' . htmlspecialchars($contactUrl, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . '"',
-            ],
-            $content
-        );
+        $links = [
+            'href="../../about/submissions"' => 'href="' . htmlspecialchars($dispatcher->url($request, Application::ROUTE_PAGE, null, 'about', 'submissions'), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . '"',
+            'href="../../about/contact"' => 'href="' . htmlspecialchars($dispatcher->url($request, Application::ROUTE_PAGE, null, 'about', 'contact'), ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8') . '"',
+        ];
 
-        // The page now uses the theme's shared banner, so the content's own
-        // hero is dropped, and its <main> wrapper becomes a <div> because the
-        // page already sits inside the OJS main content area.
-        $content = preg_replace('#<header class="jcrtp-process-hero">.*?</header>#s', '', $content, 1);
-        $content = preg_replace(['#<main(\s)#', '#</main>#'], ['<div$1', '</div>'], $content, 1);
+        // Public page: only the confirmed workflow (data/editorial-process.html).
+        $content = strtr($this->readContent('editorial-process.html'), $links);
+
+        // The earlier long-form draft (data/editorial-process-draft.html) still
+        // awaits editorial confirmation, so it is shown only to journal
+        // managers and editors, clearly labelled, and never to readers.
+        $draftContent = '';
+        $user = $request->getUser();
+        $context = $request->getContext();
+        if ($user && $context && (
+            $user->hasRole([\PKP\security\Role::ROLE_ID_MANAGER, \PKP\security\Role::ROLE_ID_SUB_EDITOR], $context->getId())
+            || $user->hasRole([\PKP\security\Role::ROLE_ID_SITE_ADMIN], \PKP\core\PKPApplication::SITE_CONTEXT_ID)
+        )) {
+            $draftContent = strtr($this->readContent('editorial-process-draft.html'), $links);
+            $draftContent = preg_replace('#<header class="jcrtp-process-hero">.*?</header>#s', '', $draftContent, 1);
+            $draftContent = preg_replace(['#<main(\s)#', '#</main>#'], ['<div$1', '</div>'], $draftContent, 1);
+        }
 
         $pageUrl = $dispatcher->url(
             $request,
@@ -63,8 +52,8 @@ class EditorialProcessHandler extends \APP\handler\Handler
             null,
             'editorial-process'
         );
-        $pageTitle = 'Editorial & Peer Review Process';
-        $description = 'Explore the JCRTP editorial workflow from manuscript submission and screening through peer review, decision, revision, and publication.';
+        $pageTitle = __('plugins.themes.editorialjournal.nav.editorialProcess');
+        $description = 'The JCRTP editorial workflow, from online submission and editorial screening through peer review and decision to production and online publication.';
         $escape = static fn (string $value): string => htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 
         $templateManager = TemplateManager::getManager($request);
@@ -72,6 +61,7 @@ class EditorialProcessHandler extends \APP\handler\Handler
         $templateManager->assign([
             'pageTitle' => $pageTitle,
             'editorialProcessContent' => $content,
+            'editorialProcessDraft' => $draftContent,
         ]);
         $templateManager->addHeader(
             'jcrtpEditorialProcessDescription',
@@ -89,5 +79,15 @@ class EditorialProcessHandler extends \APP\handler\Handler
                 . '<meta property="og:url" content="' . $escape($pageUrl) . '" />'
         );
         $templateManager->display('frontend/pages/editorialProcess.tpl');
+    }
+
+    /** Read a page fragment from the theme's data directory. */
+    protected function readContent(string $file): string
+    {
+        $content = file_get_contents(__DIR__ . '/data/' . $file);
+        if ($content === false) {
+            throw new \RuntimeException('Unable to read the Editorial Process page content.');
+        }
+        return $content;
     }
 }

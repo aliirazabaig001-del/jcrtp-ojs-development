@@ -73,7 +73,7 @@
 					{/capture}
 					{if $currentContext && $jcrtpLogoUrl}
 						<a href="{$homeUrl}" class="is_img jcrtp-logo-link">
-							<img class="jcrtp-logo" src="{$jcrtpLogoUrl|escape}" width="{$jcrtpLogoWidth|escape}" height="{$jcrtpLogoHeight|escape}" alt="{if $displayPageHeaderLogo && $displayPageHeaderLogo.altText != ''}{$displayPageHeaderLogo.altText|escape}{else}{$displayPageHeaderTitle|escape}{/if}" />
+							<img class="jcrtp-logo" src="{$jcrtpLogoUrl|escape}" srcset="{$jcrtpLogoSrcset|escape}" sizes="(max-width: 767px) 160px, 280px" width="{$jcrtpLogoWidth|escape}" height="{$jcrtpLogoHeight|escape}" alt="{if $displayPageHeaderLogo && $displayPageHeaderLogo.altText != ''}{$displayPageHeaderLogo.altText|escape}{else}{$displayPageHeaderTitle|escape}{/if}" />
 						</a>
 					{elseif $displayPageHeaderLogo}
 						<a href="{$homeUrl}" class="is_img">

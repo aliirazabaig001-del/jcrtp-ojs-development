@@ -26,7 +26,7 @@
     {include file="frontend/components/jcrtp/pageBanner.tpl" bannerTitle=$jcrtpBannerTitle bannerSummary=$jcrtpBannerSummary bannerCrumbs=$jcrtpBannerCrumbs bannerCurrent="" bannerEyebrow="" bannerSubtitle=""}
 
     <div class="jcrtp-inner__body jcrtp-doc__layout jcrtp-doc__layout--aside">
-        <aside class="jcrtp-doc__nav">
+        <div class="jcrtp-doc__nav">
             <nav class="jcrtp-card jcrtp-section-nav" aria-labelledby="jcrtp-submissions-toc">
                 <h2 class="jcrtp-card__title" id="jcrtp-submissions-toc">{include file="frontend/components/jcrtp/icon.tpl" name="document" size=24}{translate key="plugins.themes.editorialjournal.page.onThisPage"}</h2>
                 <ul>
@@ -43,7 +43,7 @@
                 </ul>
             </nav>
             {include file="frontend/components/jcrtp/infoLinks.tpl" current="submissions"}
-        </aside>
+        </div>
 
         <div class="jcrtp-doc__main">
             {* Submission status, as in core *}
@@ -131,7 +131,7 @@
             {/if}
         </div>
 
-        <aside class="jcrtp-doc__aside">
+        <aside class="jcrtp-doc__aside" aria-label="{translate|escape key="plugins.themes.editorialjournal.page.relatedInfo"}">
             <section class="jcrtp-card jcrtp-cta-card" aria-labelledby="jcrtp-submit-cta">
                 <h2 class="jcrtp-card__title" id="jcrtp-submit-cta">{include file="frontend/components/jcrtp/icon.tpl" name="arrow" size=24}{translate key="plugins.themes.editorialjournal.header.submitManuscript"}</h2>
                 <div class="jcrtp-card__body">

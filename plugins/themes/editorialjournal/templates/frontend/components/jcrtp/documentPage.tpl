@@ -16,10 +16,10 @@
     {include file="frontend/components/jcrtp/pageBanner.tpl" bannerTitle=$docTitle bannerSummary="" bannerCrumbs=$docCrumbs bannerCurrent="" bannerEyebrow="" bannerSubtitle=""}
 
     <div class="jcrtp-inner__body jcrtp-doc__layout">
-        <aside class="jcrtp-doc__nav">
+        <div class="jcrtp-doc__nav">
             {include file="frontend/components/jcrtp/tocCard.tpl" toc=$jcrtpDoc.toc}
             {include file="frontend/components/jcrtp/infoLinks.tpl" current=$docCurrent}
-        </aside>
+        </div>
         <div class="jcrtp-doc__main">
             {$docEditLink}
             {if $jcrtpDoc.html|strip_tags|trim}

@@ -19,7 +19,7 @@
     {include file="frontend/components/jcrtp/pageBanner.tpl" bannerTitle=$jcrtpBannerTitle bannerSummary=$jcrtpBannerSummary bannerCrumbs="" bannerCurrent="" bannerEyebrow="" bannerSubtitle=""}
 
     <div class="jcrtp-inner__body jcrtp-search__layout">
-        <aside class="jcrtp-search__filters">
+        <aside class="jcrtp-search__filters" aria-labelledby="jcrtp-search-form-heading">
             {capture name="searchFormUrl"}{url escape=false}{/capture}
             {assign var=formUrlParameters value=[]}{* Prevent Smarty warning *}
             {$smarty.capture.searchFormUrl|parse_url:$smarty.const.PHP_URL_QUERY|default:""|parse_str:$formUrlParameters}

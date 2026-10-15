@@ -3,7 +3,7 @@
  * an uploaded cover, a theme cover is drawn from the official logo and the
  * issue's own identification; without an issue, an empty state is shown.
  *}
-<section class="jcrtp-home-panel jcrtp-current" aria-labelledby="jcrtp-current-heading">
+<section class="jcrtp-home-panel jcrtp-current" id="homepageIssue" aria-labelledby="jcrtp-current-heading">
     <div class="jcrtp-home-panel__head">
         <h2 id="jcrtp-current-heading">{translate key="plugins.themes.editorialjournal.nav.currentIssue"}</h2>
         <a class="jcrtp-more-link" href="{url page="issue" op="archive"}">{translate key="journal.viewAllIssues"} <span aria-hidden="true">→</span></a>
@@ -18,7 +18,7 @@
                     <img src="{$issueCover|escape}" alt="" loading="lazy">
                 {else}
                     <span class="jcrtp-cover">
-                        <span class="jcrtp-cover__brand"><img src="{$jcrtpLogoUrl|escape}" width="{$jcrtpLogoWidth|escape}" height="{$jcrtpLogoHeight|escape}" alt="" loading="lazy"></span>
+                        <span class="jcrtp-cover__brand"><img src="{$jcrtpLogoUrl|escape}" srcset="{$jcrtpLogoSrcset|escape}" sizes="180px" width="{$jcrtpLogoWidth|escape}" height="{$jcrtpLogoHeight|escape}" alt="" loading="lazy"></span>
                         <span class="jcrtp-cover__art"></span>
                         <span class="jcrtp-cover__foot">
                             <span>{include file="frontend/components/jcrtp/issueLabel.tpl" issue=$issue short=true}</span>

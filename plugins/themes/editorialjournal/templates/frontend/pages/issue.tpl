@@ -173,7 +173,7 @@
         </section>
 
         {* Right: issue facts, downloads, sharing, links *}
-        <aside class="jcrtp-issue__aside">
+        <aside class="jcrtp-issue__aside" aria-label="{translate|escape key="plugins.themes.editorialjournal.page.relatedInfo"}">
             <section class="jcrtp-card jcrtp-issue-info" aria-labelledby="jcrtp-issue-info">
                 <h2 class="jcrtp-card__title" id="jcrtp-issue-info">{include file="frontend/components/jcrtp/icon.tpl" name="info" size=26}{translate key="plugins.themes.editorialjournal.issue.information"}</h2>
                 <dl class="jcrtp-facts-list">

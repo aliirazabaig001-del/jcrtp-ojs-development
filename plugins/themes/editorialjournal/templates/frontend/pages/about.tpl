@@ -24,7 +24,7 @@
     <div class="jcrtp-inner__body jcrtp-about__layout">
 
         {* Left: section navigation and open-access card *}
-        <aside class="jcrtp-about__nav">
+        <div class="jcrtp-about__nav">
             <nav class="jcrtp-card jcrtp-section-nav" aria-labelledby="jcrtp-about-nav-heading">
                 <h2 class="jcrtp-card__title" id="jcrtp-about-nav-heading">
                     {include file="frontend/components/jcrtp/icon.tpl" name="book" size=26}
@@ -57,7 +57,7 @@
                     </p>
                 </div>
             {/if}
-        </aside>
+        </div>
 
         {* Centre: the journal's own About content *}
         <div class="jcrtp-about__main">
@@ -98,7 +98,7 @@
         </div>
 
         {* Right: facts held by OJS *}
-        <aside class="jcrtp-about__aside">
+        <aside class="jcrtp-about__aside" aria-label="{translate|escape key="plugins.themes.editorialjournal.page.relatedInfo"}">
             {if $jcrtpKeyInfo}
                 <section class="jcrtp-card" aria-labelledby="jcrtp-about-key">
                     <h2 class="jcrtp-card__title" id="jcrtp-about-key">{include file="frontend/components/jcrtp/icon.tpl" name="info" size=26}{translate key="plugins.themes.editorialjournal.about.keyInfo"}</h2>

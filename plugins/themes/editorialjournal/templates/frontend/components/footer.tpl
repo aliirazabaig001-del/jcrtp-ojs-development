@@ -45,7 +45,7 @@
 				<div class="jcrtp-footer__about">
 					{if $jcrtpLogoUrl}
 						<a class="jcrtp-footer-brand" href="{url page="index" router=PKP\core\PKPApplication::ROUTE_PAGE}">
-							<img class="jcrtp-logo" src="{$jcrtpLogoUrl|escape}" width="{$jcrtpLogoWidth|escape}" height="{$jcrtpLogoHeight|escape}" alt="{$jcrtpJournalName|escape}" loading="lazy" />
+							<img class="jcrtp-logo" src="{$jcrtpLogoUrl|escape}" srcset="{$jcrtpLogoSrcset|escape}" sizes="220px" width="{$jcrtpLogoWidth|escape}" height="{$jcrtpLogoHeight|escape}" alt="{$jcrtpJournalName|escape}" loading="lazy" />
 						</a>
 					{/if}
 					{if $jcrtpFooterSummary}
