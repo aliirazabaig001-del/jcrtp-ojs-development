@@ -30,6 +30,7 @@ class EditorialJournalThemePlugin extends ThemePlugin
         Hook::add('TemplateManager::display', $this->assignHomepageData(...));
         Hook::add('TemplateManager::display', $this->assignAboutData(...));
         Hook::add('TemplateManager::display', $this->assignIssueData(...));
+        Hook::add('TemplateManager::display', $this->assignArchiveData(...));
         Hook::add('LoadHandler', $this->registerEditorialProcessHandler(...));
 
         $this->addOption('jcrtpPrimaryColour', 'FieldColor', [
@@ -148,7 +149,11 @@ class EditorialJournalThemePlugin extends ThemePlugin
         $templateManager = $args[0];
         $template = $args[1];
 
-        if (!is_string($template) || !str_starts_with($template, 'frontend/')) {
+        // Reader-facing templates: core frontend pages, plus the Static Pages
+        // plugin's page template (journal policy pages), which is not named
+        // "frontend/..." but uses the same header and footer.
+        $isStaticPage = is_string($template) && str_contains($template, 'staticPages') && str_ends_with($template, ':content.tpl');
+        if (!is_string($template) || (!str_starts_with($template, 'frontend/') && !$isStaticPage)) {
             return Hook::CONTINUE;
         }
 
@@ -448,6 +453,92 @@ class EditorialJournalThemePlugin extends ThemePlugin
         return Hook::CONTINUE;
     }
 
+    /**
+     * Archive page (frontend/pages/issueArchive.tpl): number of published
+     * articles in each listed issue, for the issue cards.
+     */
+    public function assignArchiveData($hookName, $args): bool
+    {
+        $templateManager = $args[0];
+        if ($args[1] !== 'frontend/pages/issueArchive.tpl') {
+            return Hook::CONTINUE;
+        }
+        $context = \APP\core\Application::get()->getRequest()->getContext();
+        $issues = $templateManager->getTemplateVars('issues');
+        if (!$context || empty($issues)) {
+            return Hook::CONTINUE;
+        }
+
+        $counts = [];
+        foreach ($issues as $issue) {
+            $counts[$issue->getId()] = \APP\facades\Repo::submission()->getCollector()
+                ->filterByContextIds([$context->getId()])
+                ->filterByIssueIds([$issue->getId()])
+                ->filterByStatus([\PKP\submission\PKPSubmission::STATUS_PUBLISHED])
+                ->getCount();
+        }
+        $currentIssue = \APP\facades\Repo::issue()->getCurrent($context->getId());
+        $templateManager->assign([
+            'jcrtpIssueArticleCounts' => $counts,
+            'jcrtpCurrentIssueId' => $currentIssue?->getId(),
+        ]);
+
+        return Hook::CONTINUE;
+    }
+
+    /**
+     * Smarty modifier "jcrtp_anchored": give every h2/h3 in OJS-managed HTML
+     * (privacy statement, static pages, author guidelines...) a stable id and
+     * return the h2 headings as an in-page table of contents. The HTML itself
+     * is otherwise returned unchanged.
+     *
+     * @return array{html: string, toc: array<int, array{id: string, title: string}>}
+     */
+    public function anchorHeadings($html, string $prefix = 'section'): array
+    {
+        $html = (string) $html;
+        if (trim(strip_tags($html)) === '' || !preg_match('/<h[23][\s>]/i', $html)) {
+            return ['html' => $html, 'toc' => []];
+        }
+        $document = new \DOMDocument();
+        $previous = libxml_use_internal_errors(true);
+        $document->loadHTML('<?xml encoding="UTF-8"><div id="jcrtp-anchor-root">' . $html . '</div>', LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        libxml_clear_errors();
+        libxml_use_internal_errors($previous);
+        $root = $document->getElementById('jcrtp-anchor-root');
+        if (!$root) {
+            return ['html' => $html, 'toc' => []];
+        }
+
+        $toc = [];
+        $usedIds = [];
+        $xpath = new \DOMXPath($document);
+        foreach ($xpath->query('.//h2|.//h3', $root) as $heading) {
+            $title = trim(preg_replace('/\s+/u', ' ', $heading->textContent));
+            if ($title === '') {
+                continue;
+            }
+            $id = $heading->getAttribute('id');
+            if ($id === '') {
+                $id = $prefix . '-' . (trim(preg_replace('/[^a-z0-9]+/', '-', strtolower($title)), '-') ?: 'part');
+                for ($base = $id, $n = 2; isset($usedIds[$id]); $n++) {
+                    $id = $base . '-' . $n;
+                }
+                $heading->setAttribute('id', $id);
+            }
+            $usedIds[$id] = true;
+            if (strtolower($heading->nodeName) === 'h2') {
+                $toc[] = ['id' => $id, 'title' => $title];
+            }
+        }
+
+        $output = '';
+        foreach (iterator_to_array($root->childNodes) as $node) {
+            $output .= $document->saveHTML($node);
+        }
+        return ['html' => $output, 'toc' => $toc];
+    }
+
     /** First sentence of an HTML description, as plain text ('' if none). */
     protected function firstSentence(string $html): string
     {
@@ -463,6 +554,9 @@ class EditorialJournalThemePlugin extends ThemePlugin
         $templateManager = $args[0];
         if (!isset($templateManager->registered_plugins['modifier']['jcrtp_nav_items'])) {
             $templateManager->registerPlugin('modifier', 'jcrtp_nav_items', $this->buildNavigationItems(...));
+        }
+        if (!isset($templateManager->registered_plugins['modifier']['jcrtp_anchored'])) {
+            $templateManager->registerPlugin('modifier', 'jcrtp_anchored', $this->anchorHeadings(...));
         }
 
         return Hook::CONTINUE;

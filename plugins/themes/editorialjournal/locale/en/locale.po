@@ -392,3 +392,63 @@ msgstr "Related Links"
 
 msgid "plugins.themes.editorialjournal.issue.allIssues"
 msgstr "All Issues"
+
+msgid "plugins.themes.editorialjournal.page.onThisPage"
+msgstr "On This Page"
+
+msgid "plugins.themes.editorialjournal.page.journalInformation"
+msgstr "Journal Information"
+
+msgid "plugins.themes.editorialjournal.page.noContent"
+msgstr "This information has not been published yet."
+
+msgid "plugins.themes.editorialjournal.archive.summary"
+msgstr "Browse every published issue of the journal."
+
+msgid "plugins.themes.editorialjournal.archive.articleCount"
+msgstr "{$number} articles"
+
+msgid "plugins.themes.editorialjournal.archive.viewIssue"
+msgstr "View Issue"
+
+msgid "plugins.themes.editorialjournal.article.information"
+msgstr "Article Information"
+
+msgid "plugins.themes.editorialjournal.article.updated"
+msgstr "Updated"
+
+msgid "plugins.themes.editorialjournal.submissions.summary"
+msgstr "Guidelines and requirements for preparing and submitting your manuscript."
+
+msgid "plugins.themes.editorialjournal.submissions.accountNeeded"
+msgstr "Manuscripts are submitted online. Log in, or register for an account, to start a submission."
+
+msgid "plugins.themes.editorialjournal.submissions.processCopy"
+msgstr "See how manuscripts move from submission through peer review to an editorial decision."
+
+msgid "plugins.themes.editorialjournal.submissions.processLink"
+msgstr "View the editorial process"
+
+msgid "plugins.themes.editorialjournal.contact.summary"
+msgstr "Get in touch with the journal's editorial office."
+
+msgid "plugins.themes.editorialjournal.contact.address"
+msgstr "Mailing Address"
+
+msgid "plugins.themes.editorialjournal.search.summary"
+msgstr "Search published articles by keyword, author and publication date."
+
+msgid "plugins.themes.editorialjournal.search.refine"
+msgstr "Search Filters"
+
+msgid "plugins.themes.editorialjournal.process.summary"
+msgstr "A transparent journey from manuscript submission to publication."
+
+msgid "plugins.themes.editorialjournal.submissions.newSubmission"
+msgstr "Start a New Submission"
+
+msgid "plugins.themes.editorialjournal.submissions.mySubmissions"
+msgstr "View My Submissions"
+
+msgid "plugins.themes.editorialjournal.submissions.sectionPolicies"
+msgstr "Section Policies"

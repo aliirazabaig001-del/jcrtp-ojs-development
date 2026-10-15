@@ -75,18 +75,18 @@ body { background: #eef2f7; }
     margin: 0;
 }
 /* Default OJS pages keep a comfortable reading width, centred. */
-.pkp_structure_main > .page_contact,
-.pkp_structure_main > .page_privacy,
-.pkp_structure_main > .page_submissions,
-.pkp_structure_main > .page_announcements,
-.pkp_structure_main > .page_announcement,
-.pkp_structure_main > .page_search,
-.pkp_structure_main > .page_issue_archive,
-.pkp_structure_main > .page_login,
-.pkp_structure_main > .page_register,
-.pkp_structure_main > .page_lost_password,
-.pkp_structure_main > .page_information,
-.pkp_structure_main > .page_static {
+.pkp_structure_main > .page_contact:not(.jcrtp-inner),
+.pkp_structure_main > .page_privacy:not(.jcrtp-inner),
+.pkp_structure_main > .page_submissions:not(.jcrtp-inner),
+.pkp_structure_main > .page_announcements:not(.jcrtp-inner),
+.pkp_structure_main > .page_announcement:not(.jcrtp-inner),
+.pkp_structure_main > .page_search:not(.jcrtp-inner),
+.pkp_structure_main > .page_issue_archive:not(.jcrtp-inner),
+.pkp_structure_main > .page_login:not(.jcrtp-inner),
+.pkp_structure_main > .page_register:not(.jcrtp-inner),
+.pkp_structure_main > .page_lost_password:not(.jcrtp-inner),
+.pkp_structure_main > .page_information:not(.jcrtp-inner),
+.pkp_structure_main > .page_static:not(.jcrtp-inner) {
     max-width: 1040px;
     margin-right: auto;
     margin-left: auto;

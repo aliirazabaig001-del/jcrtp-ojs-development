@@ -51,6 +51,12 @@ class EditorialProcessHandler extends \APP\handler\Handler
             $content
         );
 
+        // The page now uses the theme's shared banner, so the content's own
+        // hero is dropped, and its <main> wrapper becomes a <div> because the
+        // page already sits inside the OJS main content area.
+        $content = preg_replace('#<header class="jcrtp-process-hero">.*?</header>#s', '', $content, 1);
+        $content = preg_replace(['#<main(\s)#', '#</main>#'], ['<div$1', '</div>'], $content, 1);
+
         $pageUrl = $dispatcher->url(
             $request,
             Application::ROUTE_PAGE,
