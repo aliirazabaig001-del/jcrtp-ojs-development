@@ -31,6 +31,7 @@ class EditorialJournalThemePlugin extends ThemePlugin
         Hook::add('TemplateManager::display', $this->assignAboutData(...));
         Hook::add('TemplateManager::display', $this->assignIssueData(...));
         Hook::add('TemplateManager::display', $this->assignArchiveData(...));
+        Hook::add('TemplateManager::display', $this->addSeoHeaders(...));
         Hook::add('LoadHandler', $this->registerEditorialProcessHandler(...));
 
         $this->addOption('jcrtpPrimaryColour', 'FieldColor', [
@@ -136,6 +137,14 @@ class EditorialJournalThemePlugin extends ThemePlugin
             throw new \UnexpectedValueException('Editorial Board data must be a JSON array.');
         }
 
+        // Intrinsic portrait sizes let browsers reserve space (no layout shift).
+        foreach ($members as &$member) {
+            $size = !empty($member['image']) ? @getimagesize(__DIR__ . '/images/editorial-board/' . basename((string) $member['image'])) : false;
+            $member['imageWidth'] = $size[0] ?? null;
+            $member['imageHeight'] = $size[1] ?? null;
+        }
+        unset($member);
+
         $templateManager->assign([
             'editorialBoardMembers' => $members,
             'editorialBoardImageBase' => $this->_getBaseUrl('images/editorial-board'),
@@ -163,6 +172,12 @@ class EditorialJournalThemePlugin extends ThemePlugin
             'jcrtpLogoUrl' => $this->_getBaseUrl('images/jcrtp-logo-official.png'),
             'jcrtpLogoWidth' => 1896,
             'jcrtpLogoHeight' => 830,
+            // Proportionally downscaled delivery copies of the same logo (no
+            // crop, recolour or redraw) so browsers download ~100-340 KB
+            // instead of the 1.3 MB original at the logo's display size.
+            'jcrtpLogoSrcset' => $this->_getBaseUrl('images/jcrtp-logo-official-480.png') . ' 480w, '
+                . $this->_getBaseUrl('images/jcrtp-logo-official-960.png') . ' 960w, '
+                . $this->_getBaseUrl('images/jcrtp-logo-official.png') . ' 1896w',
         ]);
 
         // Footer data (footer.tpl): the journal description's first sentence
@@ -537,6 +552,110 @@ class EditorialJournalThemePlugin extends ThemePlugin
             $output .= $document->saveHTML($node);
         }
         return ['html' => $output, 'toc' => $toc];
+    }
+
+    /**
+     * Meta description, canonical URL and Open Graph / Twitter tags for the
+     * main reader pages, built only from OJS data. Search, login and other
+     * transactional pages are left alone, as is everything OJS or plugins
+     * already output (citation_*, DC.* metadata). The Editorial Process page
+     * adds its own tags in EditorialProcessHandler.
+     */
+    public function addSeoHeaders($hookName, $args): bool
+    {
+        $templateManager = $args[0];
+        $template = $args[1];
+        $simplePages = [
+            'frontend/pages/issueArchive.tpl', 'frontend/pages/editorialMasthead.tpl',
+            'frontend/pages/submissions.tpl', 'frontend/pages/contact.tpl',
+            'frontend/pages/privacy.tpl', 'frontend/pages/announcements.tpl',
+        ];
+        $richPages = ['frontend/pages/indexJournal.tpl', 'frontend/pages/about.tpl', 'frontend/pages/issue.tpl', 'frontend/pages/article.tpl'];
+        if (!is_string($template) || (!in_array($template, $richPages, true) && !in_array($template, $simplePages, true))) {
+            return Hook::CONTINUE;
+        }
+        $request = \APP\core\Application::get()->getRequest();
+        $context = $request->getContext();
+        if (!$context) {
+            return Hook::CONTINUE;
+        }
+
+        $dispatcher = $request->getDispatcher();
+        $pageUrl = fn (string $page, ?string $op = null, $path = null) => $dispatcher->url($request, \PKP\core\PKPApplication::ROUTE_PAGE, null, $page, $op, $path);
+        $journalName = (string) $context->getLocalizedName();
+        $journalSummary = $this->firstSentence((string) $context->getLocalizedData('description'));
+        $title = $journalName;
+        $description = '';
+        $canonical = null;
+        $type = 'website';
+        $image = $this->_getBaseUrl('images/jcrtp-logo-official.png');
+
+        switch ($template) {
+            case 'frontend/pages/indexJournal.tpl':
+                $description = $journalSummary;
+                $canonical = $pageUrl('index');
+                break;
+            case 'frontend/pages/about.tpl':
+                $title = __('about.aboutContext') . ' | ' . $journalName;
+                $description = $journalSummary;
+                $canonical = $pageUrl('about');
+                break;
+            case 'frontend/pages/issue.tpl':
+                $issue = $templateManager->getTemplateVars('issue');
+                if (!$issue) {
+                    return Hook::CONTINUE;
+                }
+                $title = $issue->getIssueIdentification() . ' | ' . $journalName;
+                $description = $this->firstSentence((string) $issue->getLocalizedDescription()) ?: $journalSummary;
+                $canonical = $pageUrl('issue', 'view', [(string) $issue->getBestIssueId()]);
+                $image = $issue->getLocalizedCoverImageUrl() ?: $image;
+                break;
+            case 'frontend/pages/article.tpl':
+                $article = $templateManager->getTemplateVars('article');
+                $publication = $templateManager->getTemplateVars('publication');
+                if (!$article || !$publication) {
+                    return Hook::CONTINUE;
+                }
+                $title = trim(strip_tags((string) $publication->getLocalizedFullTitle())) . ' | ' . $journalName;
+                $abstract = trim(preg_replace('/\s+/u', ' ', html_entity_decode(strip_tags((string) $publication->getLocalizedData('abstract')), ENT_QUOTES | ENT_HTML5, 'UTF-8')));
+                $description = mb_strlen($abstract) > 200 ? rtrim(mb_substr($abstract, 0, 197)) . '…' : $abstract;
+                $canonical = $pageUrl('article', 'view', [(string) $article->getBestId()]);
+                $type = 'article';
+                if ($publication->getLocalizedData('coverImage')) {
+                    $image = $publication->getLocalizedCoverImageUrl($context->getId());
+                }
+                break;
+            default:
+                // Simple pages: canonical URL and sharing title only (first archive page only).
+                if ($template === 'frontend/pages/issueArchive.tpl' && $templateManager->getTemplateVars('prevPage')) {
+                    return Hook::CONTINUE;
+                }
+                $canonical = (string) strtok($request->getCompleteUrl(), '?');
+                $pageTitle = $templateManager->getTemplateVars('pageTitleTranslated');
+                $title = ($pageTitle ? trim(strip_tags((string) $pageTitle)) . ' | ' : '') . $journalName;
+        }
+
+        $escape = fn (string $value): string => htmlspecialchars($value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+        $tags = [];
+        if ($description !== '') {
+            $tags[] = '<meta name="description" content="' . $escape($description) . '" />';
+        }
+        if ($canonical) {
+            $tags[] = '<link rel="canonical" href="' . $escape($canonical) . '" />';
+            $tags[] = '<meta property="og:url" content="' . $escape($canonical) . '" />';
+        }
+        $tags[] = '<meta property="og:site_name" content="' . $escape($journalName) . '" />';
+        $tags[] = '<meta property="og:title" content="' . $escape($title) . '" />';
+        $tags[] = '<meta property="og:type" content="' . $type . '" />';
+        if ($description !== '') {
+            $tags[] = '<meta property="og:description" content="' . $escape($description) . '" />';
+        }
+        $tags[] = '<meta property="og:image" content="' . $escape($image) . '" />';
+        $tags[] = '<meta name="twitter:card" content="summary" />';
+
+        $templateManager->addHeader('jcrtpSeo', implode("\n", $tags), ['contexts' => ['frontend']]);
+
+        return Hook::CONTINUE;
     }
 
     /** First sentence of an HTML description, as plain text ('' if none). */

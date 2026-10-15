@@ -10,9 +10,9 @@
     {include file="frontend/components/jcrtp/pageBanner.tpl" bannerTitle=$jcrtpBannerTitle bannerSummary="" bannerCrumbs=$jcrtpBannerCrumbs bannerCurrent="" bannerEyebrow="" bannerSubtitle=""}
 
     <div class="jcrtp-inner__body jcrtp-doc__layout">
-    <aside class="jcrtp-doc__nav">
+    <div class="jcrtp-doc__nav">
         {include file="frontend/components/jcrtp/infoLinks.tpl" current="board"}
-    </aside>
+    </div>
     <div class="jcrtp-doc__main">
     <section class="jcrtp-board" aria-labelledby="jcrtp-board-heading">
         <h2 id="jcrtp-board-heading">{translate key="plugins.themes.editorialjournal.board.membersHeading"}</h2>
@@ -21,7 +21,7 @@
                 <article class="jcrtp-board-card{if !$member.image} jcrtp-board-card--no-portrait{/if}">
                     {if $member.image}
                         <div class="jcrtp-board-card__portrait">
-                            <img src="{$editorialBoardImageBase|escape}/{$member.image|escape:'url'}" alt="{translate key="plugins.themes.editorialjournal.board.portraitAlt" name=$member.name|escape}" loading="lazy" decoding="async">
+                            <img src="{$editorialBoardImageBase|escape}/{$member.image|escape:'url'}" alt="{translate key="plugins.themes.editorialjournal.board.portraitAlt" name=$member.name|escape}"{if $member.imageWidth} width="{$member.imageWidth|escape}" height="{$member.imageHeight|escape}"{/if} loading="lazy" decoding="async">
                         </div>
                     {/if}
                     <div class="jcrtp-board-card__content">

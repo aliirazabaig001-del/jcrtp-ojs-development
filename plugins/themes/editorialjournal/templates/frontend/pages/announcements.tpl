@@ -12,9 +12,9 @@
     {include file="frontend/components/jcrtp/pageBanner.tpl" bannerTitle=$jcrtpBannerTitle bannerSummary="" bannerCrumbs="" bannerCurrent="" bannerEyebrow="" bannerSubtitle=""}
 
     <div class="jcrtp-inner__body jcrtp-doc__layout">
-        <aside class="jcrtp-doc__nav">
+        <div class="jcrtp-doc__nav">
             {include file="frontend/components/jcrtp/infoLinks.tpl" current="announcements"}
-        </aside>
+        </div>
         <div class="jcrtp-doc__main">
             {include file="frontend/components/editLink.tpl" page="management" op="settings" path="announcements" anchor="announcements" sectionTitleKey="announcement.announcements"}
             {if $announcementsIntroduction}

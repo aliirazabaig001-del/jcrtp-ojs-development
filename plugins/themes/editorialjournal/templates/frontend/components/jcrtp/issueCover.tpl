@@ -9,7 +9,7 @@
     <img src="{$jcrtpIssueCover|escape}" alt="{$issue->getLocalizedCoverImageAltText()|escape}" loading="lazy">
 {else}
     <span class="jcrtp-cover">
-        <span class="jcrtp-cover__brand"><img src="{$jcrtpLogoUrl|escape}" width="{$jcrtpLogoWidth|escape}" height="{$jcrtpLogoHeight|escape}" alt="" loading="lazy"></span>
+        <span class="jcrtp-cover__brand"><img src="{$jcrtpLogoUrl|escape}" srcset="{$jcrtpLogoSrcset|escape}" sizes="180px" width="{$jcrtpLogoWidth|escape}" height="{$jcrtpLogoHeight|escape}" alt="" loading="lazy"></span>
         <span class="jcrtp-cover__art"></span>
         <span class="jcrtp-cover__foot">
             <span>{include file="frontend/components/jcrtp/issueLabel.tpl" issue=$issue short=true}</span>

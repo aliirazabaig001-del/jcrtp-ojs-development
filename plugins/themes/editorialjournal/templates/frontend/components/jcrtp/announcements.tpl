@@ -2,7 +2,7 @@
  * Homepage announcements panel. Rendered only when OJS supplies
  * $announcements (announcements enabled with a homepage count).
  *}
-<section class="jcrtp-side-panel" aria-labelledby="jcrtp-announcements-heading">
+<section class="jcrtp-side-panel" id="homepageAnnouncements" aria-labelledby="jcrtp-announcements-heading">
     <h2 class="jcrtp-side-panel__title" id="jcrtp-announcements-heading">
         <svg aria-hidden="true" focusable="false" viewBox="0 0 40 40" width="26" height="26"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" d="M6 16h7l15-8v24l-15-8H6zM13 24l3 9h5l-2-9M32 14a6 6 0 0 1 0 12"/></svg>
         {translate key="announcement.announcements"}

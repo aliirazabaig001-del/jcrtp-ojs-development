@@ -867,6 +867,11 @@
     font: 600 .86rem/1.2 var(--jc-sans, system-ui, sans-serif);
     cursor: pointer;
 }
+.pkp_structure_main .jcrtp-article__plugins .citation_formats_button:focus-visible,
+.pkp_structure_main .jcrtp-article__plugins .citation_formats_list a:focus-visible {
+    outline: 2px solid var(--home-violet);
+    outline-offset: 2px;
+}
 .jcrtp-article__plugins #citationOutput { font-size: .9rem; line-height: 1.55; overflow-wrap: anywhere; }
 
 /* ---------- Search ---------- */
@@ -987,6 +992,129 @@
     font-family: var(--jc-sans, system-ui, sans-serif);
 }
 .jcrtp-process-page .jcrtp-process-confirmation { margin-top: 0; }
+
+/* Public Editorial Process: a calm numbered timeline and decision list. */
+.jcrtp-ep { max-width: 780px; color: var(--home-ink); }
+.pkp_structure_main .jcrtp-ep__intro { font-size: 1.08rem; line-height: 1.65; }
+.jcrtp-ep__section { margin-top: 34px; }
+.pkp_structure_main .jcrtp-ep__section > h2 {
+    margin: 0 0 16px;
+    color: var(--home-navy);
+    font: 700 1.45rem/1.25 var(--jc-serif, Georgia, serif);
+}
+.jcrtp-ep__section > h2::after {
+    display: block;
+    width: 44px;
+    height: 3px;
+    margin-top: 10px;
+    content: "";
+    background: var(--home-purple);
+    border-radius: 2px;
+}
+.jcrtp-ep__steps { counter-reset: jcrtp-step; list-style: none; }
+.pkp_structure_main .jcrtp-ep__steps > li {
+    position: relative;
+    margin: 0;
+    padding: 0 0 20px 54px;
+    counter-increment: jcrtp-step;
+}
+.jcrtp-ep__steps > li::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    content: counter(jcrtp-step);
+    color: var(--home-purple-deep);
+    background: var(--home-lilac);
+    border: 1px solid #d6c4ee;
+    border-radius: 50%;
+    font: 700 .95rem/1 var(--jc-sans, system-ui, sans-serif);
+}
+.jcrtp-ep__steps > li:not(:last-child)::after {
+    position: absolute;
+    top: 38px;
+    bottom: 4px;
+    left: 16.5px;
+    width: 1px;
+    content: "";
+    background: #ddd0ee;
+}
+.pkp_structure_main .jcrtp-ep__steps h3 {
+    margin: 5px 0 4px;
+    color: var(--home-navy);
+    font: 700 1.08rem/1.3 var(--jc-serif, Georgia, serif);
+}
+.pkp_structure_main .jcrtp-ep__steps p { margin: 0; color: var(--home-muted); font-size: .97rem; line-height: 1.6; }
+.pkp_structure_main .jcrtp-ep a { color: var(--home-purple); }
+.jcrtp-ep__decisions { border-top: 1px solid var(--home-line); }
+.jcrtp-ep__decisions > div {
+    display: grid;
+    grid-template-columns: minmax(130px, 170px) minmax(0, 1fr);
+    gap: 4px 18px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--home-line);
+}
+.jcrtp-ep__decisions dt { color: var(--home-navy); font-weight: 700; }
+.jcrtp-ep__decisions dd { margin: 0; color: var(--home-ink); }
+.pkp_structure_main .jcrtp-ep__decisions + p { margin-top: 14px; color: var(--home-muted); font-size: .95rem; }
+.pkp_structure_main .jcrtp-ep__links { margin-top: 12px; font-weight: 600; }
+.jcrtp-ep__links span { margin: 0 8px; color: var(--home-muted); }
+
+/* Editor-only draft panel. */
+.jcrtp-ep-draft {
+    max-width: 780px;
+    margin-top: 40px;
+    border: 1px dashed #c9b6e4;
+    border-radius: var(--home-radius);
+    background: #fcfaff;
+}
+.jcrtp-ep-draft > summary {
+    display: grid;
+    gap: 4px;
+    padding: 14px 18px;
+    cursor: pointer;
+    color: var(--home-navy);
+}
+.jcrtp-ep-draft > summary span { color: var(--home-muted); font-size: .9rem; }
+.jcrtp-ep-draft__body { padding: 0 18px 18px; }
+@media (max-width: 599px) {
+    .jcrtp-ep__decisions > div { grid-template-columns: minmax(0, 1fr); }
+    .pkp_structure_main .jcrtp-ep__steps > li { padding-left: 46px; }
+}
+
+/* ---------- Account pages (login, reset password, register) ----------
+   CSS only: the OJS forms, fields and validation are unchanged. */
+.pkp_structure_main > .page_login:not(.jcrtp-inner),
+.pkp_structure_main > .page_lost_password:not(.jcrtp-inner) { max-width: 560px; }
+.pkp_structure_main > .page_login .cmp_form,
+.pkp_structure_main > .page_lost_password .cmp_form,
+.pkp_structure_main > .page_register .cmp_form {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    padding: clamp(18px, 3vw, 28px);
+    background: #ffffff;
+    border: 1px solid #e3dcef;
+    border-top: 3px solid #6b1fa8;
+    border-radius: 12px;
+    box-shadow: 0 10px 26px rgba(42, 18, 87, .08);
+}
+.pkp_structure_main > .page_login .cmp_form fieldset,
+.pkp_structure_main > .page_lost_password .cmp_form fieldset { width: 100%; max-width: none; padding: 0; background: none; border: 0; }
+.pkp_structure_main > .page_login .cmp_form input[type="text"],
+.pkp_structure_main > .page_login .cmp_form input[type="password"],
+.pkp_structure_main > .page_lost_password .cmp_form input[type="email"],
+.pkp_structure_main > .page_lost_password .cmp_form input[type="text"] { width: 100%; max-width: none; }
+.pkp_structure_page .pkp_structure_main > .page_login form.cmp_form,
+.pkp_structure_page .pkp_structure_main > .page_lost_password form.cmp_form { max-width: none; }
+.pkp_structure_page .pkp_structure_main > .page_login form.cmp_form input:is([type="text"], [type="password"], [type="email"]),
+.pkp_structure_page .pkp_structure_main > .page_lost_password form.cmp_form input:is([type="text"], [type="email"]) { width: 100%; max-width: none; }
+.pkp_structure_main > .page_login .cmp_form .fields > div,
+.pkp_structure_main > .page_lost_password .cmp_form .fields > div { max-width: none; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1279px) {

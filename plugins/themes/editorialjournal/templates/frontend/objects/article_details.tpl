@@ -189,7 +189,7 @@
             {/if}
         </div><!-- .jcrtp-article__main -->
 
-        <aside class="jcrtp-article__aside">
+        <aside class="jcrtp-article__aside" aria-label="{translate|escape key="plugins.themes.editorialjournal.page.relatedInfo"}">
 
             {if $primaryGalleys || $supplementaryGalleys}
                 <section class="jcrtp-card item galleys" id="article-downloads" aria-labelledby="jcrtp-article-downloads">
