@@ -14,6 +14,7 @@
     background: #ffffff;
 }
 .pkp_structure_page .pkp_structure_content:has(.jcrtp-home) > .pkp_structure_main {
+    margin: 0;
     padding: 0;
 }
 
@@ -42,6 +43,9 @@
     font-family: var(--jc-serif, Georgia, serif);
 }
 .jcrtp-home p { margin: 0; }
+/* The parent theme spaces every list; homepage lists set their own rhythm. */
+.jcrtp-home ul,
+.jcrtp-home ol { margin: 0; }
 
 /* ---------- Buttons ---------- */
 .jcrtp-home a.jcrtp-btn {
@@ -376,6 +380,11 @@
 }
 .jcrtp-home .jcrtp-current__title a { color: var(--home-navy); text-decoration: none; }
 .jcrtp-home .jcrtp-current__title a:hover { color: var(--home-purple); text-decoration: underline; }
+.jcrtp-home .jcrtp-current__issue-title {
+    margin-top: 6px;
+    color: var(--home-purple);
+    font: 600 .95rem/1.4 var(--jc-sans, system-ui, sans-serif);
+}
 .jcrtp-home .jcrtp-current__date {
     margin-top: 4px;
     color: var(--home-navy);
@@ -567,8 +576,8 @@
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    min-height: 44px;
-    padding: 8px 18px;
+    min-height: 40px;
+    padding: 7px 18px;
     color: var(--home-navy);
     font-size: .95rem;
     text-decoration: none;
@@ -649,7 +658,7 @@
     }
     .jcrtp-facts {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         column-gap: 24px;
         padding: 6px 20px;
     }
@@ -684,6 +693,7 @@
 }
 
 @media (max-width: 599px) {
+    .jcrtp-facts { grid-template-columns: minmax(0, 1fr); }
     .jcrtp-hero__actions { flex-direction: column; align-items: stretch; }
     .jcrtp-home a.jcrtp-btn { width: 100%; }
     .jcrtp-current__card {

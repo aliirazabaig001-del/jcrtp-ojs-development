@@ -1,8 +1,8 @@
 {**
  * Homepage hero (design-references/Homepage.png). The summary is the first
  * sentence of the OJS journal description; the facts card lists only values
- * OJS holds (current issue, published-article count, open access, ISSN,
- * submissions status). The background illustration is decorative CSS.
+ * OJS holds (current issue, published-article count, ISSN, open access).
+ * The background illustration is decorative CSS.
  *}
 {assign var=jcrtpOnlineIssn value=$currentJournal->getData('onlineIssn')}
 {assign var=jcrtpPrintIssn value=$currentJournal->getData('printIssn')}
@@ -37,15 +37,15 @@
             </div>
         </div>
 
-        {if $issue || $jcrtpPublishedArticleCount || $jcrtpIsOpenAccess || $jcrtpOnlineIssn || $jcrtpPrintIssn || $jcrtpAcceptsSubmissions}
+        {if $issue || $jcrtpPublishedArticleCount || $jcrtpIsOpenAccess || $jcrtpOnlineIssn || $jcrtpPrintIssn}
             <dl class="jcrtp-facts" aria-label="{translate|escape key="plugins.themes.editorialjournal.hero.factsLabel"}">
                 {if $issue}
                     <div class="jcrtp-facts__row">
                         <svg class="jcrtp-facts__icon" aria-hidden="true" focusable="false" viewBox="0 0 40 40"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" d="M10 5h15l7 7v23H10zM25 5v7h7M15 18h12M15 23h12M15 28h8"/></svg>
                         <dt>{translate key="plugins.themes.editorialjournal.hero.latestIssue"}</dt>
                         <dd>
-                            <a href="{url page="issue" op="view" path=$issue->getBestIssueId()}">{$issue->getIssueIdentification()|escape}</a>
-                            {if $issue->getDatePublished()}<span>{$issue->getDatePublished()|date_format:"%B %Y"}</span>{/if}
+                            <a href="{url page="issue" op="view" path=$issue->getBestIssueId()}">{include file="frontend/components/jcrtp/issueLabel.tpl" issue=$issue short=true}</a>
+                            {if $issue->getDatePublished()}<span>{$issue->getDatePublished()|date_format:"F Y"}</span>{/if}
                         </dd>
                     </div>
                 {/if}
@@ -73,13 +73,6 @@
                         <svg class="jcrtp-facts__icon" aria-hidden="true" focusable="false" viewBox="0 0 40 40"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" d="M13 17v-5a7 7 0 0 1 14 0v1"/><circle cx="20" cy="26" r="9" fill="none" stroke="currentColor" stroke-width="2.6"/><circle cx="20" cy="26" r="3" fill="currentColor"/></svg>
                         <dt>{translate key="plugins.themes.editorialjournal.header.openAccess"}</dt>
                         <dd>{translate key="plugins.themes.editorialjournal.hero.openAccessValue"}</dd>
-                    </div>
-                {/if}
-                {if $jcrtpAcceptsSubmissions}
-                    <div class="jcrtp-facts__row">
-                        <svg class="jcrtp-facts__icon" aria-hidden="true" focusable="false" viewBox="0 0 40 40"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" d="M6 19 34 7l-9 27-6-11zM19 23l15-16"/></svg>
-                        <dt>{translate key="plugins.themes.editorialjournal.hero.submissions"}</dt>
-                        <dd>{translate key="plugins.themes.editorialjournal.hero.submissionsOpen"}</dd>
                     </div>
                 {/if}
             </dl>

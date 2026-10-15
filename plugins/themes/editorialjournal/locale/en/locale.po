@@ -33,12 +33,6 @@ msgstr "Published Articles"
 msgid "plugins.themes.editorialjournal.hero.openAccessValue"
 msgstr "Free to read"
 
-msgid "plugins.themes.editorialjournal.hero.submissions"
-msgstr "Submissions"
-
-msgid "plugins.themes.editorialjournal.hero.submissionsOpen"
-msgstr "Now accepting"
-
 msgid "plugins.themes.editorialjournal.features.label"
 msgstr "What the journal offers"
 
@@ -245,3 +239,45 @@ msgstr "Current issue article filter"
 
 msgid "plugins.themes.editorialjournal.option.filter.enabled"
 msgstr "Let readers filter the current issue by title or author"
+
+msgid "plugins.themes.editorialjournal.issue.label"
+msgstr "Volume {$volume}, Issue {$number}"
+
+msgid "plugins.themes.editorialjournal.issue.labelShort"
+msgstr "Vol. {$volume}, No. {$number}"
+
+msgid "plugins.themes.editorialjournal.footer.quickLinks"
+msgstr "Quick Links"
+
+msgid "plugins.themes.editorialjournal.footer.connect"
+msgstr "Connect With Us"
+
+msgid "plugins.themes.editorialjournal.footer.rights"
+msgstr "© {$year} {$journal}. All rights reserved."
+
+msgid "plugins.themes.editorialjournal.footer.social.linkedin"
+msgstr "{$journal} on LinkedIn"
+
+msgid "plugins.themes.editorialjournal.footer.social.x"
+msgstr "{$journal} on X"
+
+msgid "plugins.themes.editorialjournal.footer.social.facebook"
+msgstr "{$journal} on Facebook"
+
+msgid "plugins.themes.editorialjournal.footer.social.youtube"
+msgstr "{$journal} on YouTube"
+
+msgid "plugins.themes.editorialjournal.option.social.linkedin"
+msgstr "LinkedIn page URL"
+
+msgid "plugins.themes.editorialjournal.option.social.x"
+msgstr "X (Twitter) profile URL"
+
+msgid "plugins.themes.editorialjournal.option.social.facebook"
+msgstr "Facebook page URL"
+
+msgid "plugins.themes.editorialjournal.option.social.youtube"
+msgstr "YouTube channel URL"
+
+msgid "plugins.themes.editorialjournal.option.social.description"
+msgstr "Optional. A full https:// address shown in the footer under \"Connect With Us\". Leave empty to hide."

@@ -32,7 +32,7 @@
                         <div class="jcrtp-article-card__meta">
                             {if $sectionTitle}<span class="jcrtp-badge">{$sectionTitle|escape}</span>{/if}
                             {if $publication->getData('datePublished')}
-                                <time datetime="{$publication->getData('datePublished')|date_format:'%Y-%m-%d'}">{$publication->getData('datePublished')|date_format:$dateFormatShort}</time>
+                                <time datetime="{$publication->getData('datePublished')|date_format:'Y-m-d'}">{$publication->getData('datePublished')|date_format:"d M Y"}</time>
                             {/if}
                         </div>
                         <h3 class="jcrtp-article-card__title">

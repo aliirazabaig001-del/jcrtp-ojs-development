@@ -1006,120 +1006,9 @@
 
 /* =========================
 
-   11. FOOTER
+   11. FOOTER - styled in footer.css
 
    ========================= */
-
-
-
-.pkp_structure_page .pkp_structure_footer_wrapper {
-
-    margin: 0;
-    color: #273449;
-    background: #f7f9fc;
-    border-top: 1px solid #e1e7ef;
-
-}
-
-
-
-.pkp_structure_page .pkp_structure_footer {
-    display: grid;
-    grid-template-columns: minmax(150px, 240px) minmax(0, 1fr);
-    align-items: start;
-    gap: 20px clamp(24px, 4vw, 56px);
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: clamp(28px, 4vw, 52px) var(--jc-gutter, 24px) 24px;
-}
-
-
-
-.pkp_structure_page .pkp_footer_content {
-    display: grid;
-    grid-template-columns: minmax(0, 1.4fr) minmax(220px, .8fr);
-    align-items: start;
-    gap: 8px clamp(24px, 5vw, 72px);
-    grid-column: 2;
-    grid-row: 1;
-    padding: 0;
-    font-size: .92rem;
-    line-height: 1.8;
-}
-.pkp_structure_page .pkp_footer_content > p { margin: 0; }
-.pkp_structure_page .pkp_footer_content > p:first-child { grid-column: 1; grid-row: 1; }
-.pkp_structure_page .pkp_footer_content > p:first-child strong { color: #0b2f5b; font: 700 1.25rem/1.35 Georgia, serif; }
-.pkp_structure_page .pkp_footer_content > p:nth-child(2) { grid-column: 2; grid-row: 1; }
-.pkp_structure_page .pkp_footer_content > p:nth-child(n + 3) { grid-column: 1 / -1; }
-.pkp_structure_page .pkp_footer_content > p:nth-child(3) { margin-top: 16px; padding-top: 12px; border-top: 1px solid #d9e1ea; color: #5b6672; font-size: .82rem; }
-
-
-
-.pkp_structure_page .pkp_structure_footer a {
-
-    color: #154f87;
-
-    text-decoration: underline;
-
-    text-underline-offset: 3px;
-
-}
-
-
-
-.pkp_structure_page .pkp_structure_footer a:hover {
-
-    color: #8d155b;
-
-}
-
-
-
-.pkp_structure_page .jcrtp-footer-brand {
-    grid-column: 1;
-    grid-row: 1;
-    margin: 0;
-}
-
-/* White panel so the logo's opaque background reads as intentional on the
-   tinted footer. */
-.pkp_structure_page .jcrtp-footer-brand a {
-    display: inline-block;
-    padding: 8px 10px;
-    line-height: 0;
-    background: #fdfdfd;
-    border: 1px solid #e1e7ef;
-    border-radius: 6px;
-    text-decoration: none;
-}
-
-.pkp_structure_page .jcrtp-footer-brand img {
-    display: block;
-    width: 100%;
-    max-width: 240px;
-    height: auto;
-    aspect-ratio: 1896 / 830;
-}
-
-.pkp_structure_page .pkp_footer_content:first-child {
-    grid-column: 1 / -1;
-}
-
-.pkp_structure_page .pkp_brand_footer {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    justify-self: end;
-    margin: 0;
-    opacity: 1;
-}
-
-.pkp_structure_page .pkp_brand_footer img {
-
-    max-width: 110px;
-
-    height: auto;
-
-}
 
 
 
@@ -1232,52 +1121,6 @@
         gap: 0;
     }
 
-    /* Tablet footer: logo above the configured footer content. */
-    .pkp_structure_page .pkp_structure_footer {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-    .pkp_structure_page .pkp_structure_footer .jcrtp-footer-brand,
-    .pkp_structure_page .pkp_structure_footer .pkp_footer_content,
-    .pkp_structure_page .pkp_structure_footer .pkp_brand_footer {
-        grid-column: 1;
-        grid-row: auto;
-    }
-
-    .pkp_structure_page .pkp_structure_footer .jcrtp-footer-brand {
-        justify-self: start;
-    }
-
-}
-
-@media (max-width: 600px) {
-    .pkp_structure_page .pkp_structure_footer {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-    .pkp_structure_page .pkp_footer_content {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 12px;
-    }
-
-    .pkp_structure_page .pkp_footer_content > p:first-child,
-    .pkp_structure_page .pkp_footer_content > p:nth-child(2),
-    .pkp_structure_page .pkp_footer_content > p:nth-child(n + 3) {
-        grid-column: 1;
-        grid-row: auto;
-    }
-
-    .pkp_structure_page .pkp_structure_footer .jcrtp-footer-brand,
-    .pkp_structure_page .pkp_structure_footer .pkp_footer_content,
-    .pkp_structure_page .pkp_structure_footer .pkp_brand_footer {
-        grid-column: 1;
-        grid-row: auto;
-        justify-self: start;
-    }
-
-    .pkp_structure_page .jcrtp-footer-brand img {
-        max-width: 190px;
-    }
 }
 
 @media (max-width: 768px) {
@@ -1329,14 +1172,6 @@
     }
 
 
-
-    .pkp_structure_page .pkp_structure_footer {
-
-        padding-left: 16px;
-
-        padding-right: 16px;
-
-    }
 
 }
 

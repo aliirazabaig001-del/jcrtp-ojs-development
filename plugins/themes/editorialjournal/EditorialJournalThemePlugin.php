@@ -18,6 +18,9 @@ use PKP\plugins\ThemePlugin;
  */
 class EditorialJournalThemePlugin extends ThemePlugin
 {
+    /** Networks offered as footer profile links, in display order. */
+    protected const SOCIAL_NETWORKS = ['linkedin', 'x', 'facebook', 'youtube'];
+
     public function init()
     {
         $this->setParent('defaultthemeplugin');
@@ -44,10 +47,20 @@ class EditorialJournalThemePlugin extends ThemePlugin
             'default' => true,
         ]);
 
+        // Optional profile links for the footer's "Connect With Us" column.
+        // Nothing is shown for a network until its URL is entered.
+        foreach (self::SOCIAL_NETWORKS as $network) {
+            $this->addOption('social' . ucfirst($network), 'FieldText', [
+                'label' => __('plugins.themes.editorialjournal.option.social.' . $network),
+                'description' => __('plugins.themes.editorialjournal.option.social.description'),
+            ]);
+        }
+
         // Plain CSS avoids a build step on the OJS server. Child styles load
         // after the parent stylesheet and only affect the reader-facing site.
         $this->addStyle('editorial-base', 'styles/base.css');
         $this->addStyle('editorial-chrome', 'styles/chrome.css');
+        $this->addStyle('editorial-footer', 'styles/footer.css');
         $this->addStyle('editorial-home', 'styles/home.css');
         $this->addStyle('editorial-content', 'styles/content.css');
         $this->addStyle('editorial-board', 'styles/editorial-board.css');
@@ -135,6 +148,23 @@ class EditorialJournalThemePlugin extends ThemePlugin
             'jcrtpLogoWidth' => 1896,
             'jcrtpLogoHeight' => 830,
         ]);
+
+        // Footer data (footer.tpl): the journal description's first sentence
+        // and the profile links entered in the theme settings.
+        $context = \APP\core\Application::get()->getRequest()->getContext();
+        if ($context) {
+            $socialLinks = [];
+            foreach (self::SOCIAL_NETWORKS as $network) {
+                $url = trim((string) $this->getOption('social' . ucfirst($network)));
+                if ($url !== '' && preg_match('#^https?://#i', $url) && filter_var($url, FILTER_VALIDATE_URL)) {
+                    $socialLinks[$network] = $url;
+                }
+            }
+            $templateManager->assign([
+                'jcrtpFooterSummary' => $this->firstSentence((string) $context->getLocalizedData('description')),
+                'jcrtpSocialLinks' => $socialLinks,
+            ]);
+        }
 
         $faviconUrl = htmlspecialchars(
             $this->_getBaseUrl('images/jcrtp-favicon.png'),
