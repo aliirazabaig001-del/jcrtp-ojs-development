@@ -21,16 +21,19 @@
                         <span class="jcrtp-cover__brand"><img src="{$jcrtpLogoUrl|escape}" width="{$jcrtpLogoWidth|escape}" height="{$jcrtpLogoHeight|escape}" alt="" loading="lazy"></span>
                         <span class="jcrtp-cover__art"></span>
                         <span class="jcrtp-cover__foot">
-                            <span>{$issue->getIssueIdentification()|escape}</span>
+                            <span>{include file="frontend/components/jcrtp/issueLabel.tpl" issue=$issue short=true}</span>
                             {if $currentJournal->getData('publishingMode') == APP\journal\Journal::PUBLISHING_MODE_OPEN}<span class="jcrtp-cover__oa">{translate key="plugins.themes.editorialjournal.header.openAccess"}</span>{/if}
                         </span>
                     </span>
                 {/if}
             </a>
             <div class="jcrtp-current__body">
-                <h3 class="jcrtp-current__title"><a href="{$issueUrl}">{$issue->getIssueIdentification()|escape}</a></h3>
+                <h3 class="jcrtp-current__title"><a href="{$issueUrl}">{include file="frontend/components/jcrtp/issueLabel.tpl" issue=$issue}</a></h3>
                 {if $issue->getDatePublished()}
-                    <p class="jcrtp-current__date"><time datetime="{$issue->getDatePublished()|date_format:'%Y-%m-%d'}">{$issue->getDatePublished()|date_format:"%B %Y"}</time></p>
+                    <p class="jcrtp-current__date"><time datetime="{$issue->getDatePublished()|date_format:'Y-m-d'}">{$issue->getDatePublished()|date_format:"F Y"}</time></p>
+                {/if}
+                {if $issue->getShowTitle() && $issue->getLocalizedTitle()}
+                    <p class="jcrtp-current__issue-title">{$issue->getLocalizedTitle()|escape}</p>
                 {/if}
                 {if $issue->hasDescription()}
                     <div class="jcrtp-current__description">{$issue->getLocalizedDescription()|strip_unsafe_html}</div>
