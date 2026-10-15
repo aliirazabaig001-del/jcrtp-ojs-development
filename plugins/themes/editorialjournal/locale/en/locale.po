@@ -16,7 +16,10 @@ msgid "plugins.themes.editorialjournal.hero.eyebrow"
 msgstr "Advancing Cancer Research"
 
 msgid "plugins.themes.editorialjournal.hero.titleLead"
-msgstr "Research Today for a"
+msgstr "Research Today"
+
+msgid "plugins.themes.editorialjournal.hero.titleJoin"
+msgstr "for a"
 
 msgid "plugins.themes.editorialjournal.hero.titleAccent"
 msgstr "Healthier Tomorrow"

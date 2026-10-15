@@ -20,8 +20,9 @@
         <div class="jcrtp-hero__content">
             <p class="jcrtp-hero__eyebrow">{translate key="plugins.themes.editorialjournal.hero.eyebrow"}</p>
             <h2 class="jcrtp-hero__title" id="jcrtp-hero-title">
-                {translate key="plugins.themes.editorialjournal.hero.titleLead"}
-                <span>{translate key="plugins.themes.editorialjournal.hero.titleAccent"}</span>
+                <span class="jcrtp-hero__title-lead">{translate key="plugins.themes.editorialjournal.hero.titleLead"}</span>
+                {translate key="plugins.themes.editorialjournal.hero.titleJoin"}
+                <span class="jcrtp-hero__title-accent">{translate key="plugins.themes.editorialjournal.hero.titleAccent"}</span>
             </h2>
             {if $jcrtpHeroSummary}
                 <p class="jcrtp-hero__lead">{$jcrtpHeroSummary|escape}</p>

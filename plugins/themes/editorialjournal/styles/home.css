@@ -53,11 +53,11 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    min-height: 52px;
-    padding: 12px 30px;
+    min-height: 50px;
+    padding: 12px 34px;
     border: 2px solid transparent;
-    border-radius: 8px;
-    font: 700 1.02rem/1.2 var(--jc-serif, Georgia, serif);
+    border-radius: 6px;
+    font: 700 1.08rem/1.2 var(--jc-serif, Georgia, serif);
     text-align: center;
     text-decoration: none;
     transition: background-color .18s ease, color .18s ease, border-color .18s ease, box-shadow .18s ease, transform .18s ease;
@@ -98,8 +98,8 @@
 }
 .jcrtp-home a.jcrtp-btn--small {
     min-height: 44px;
-    padding: 10px 18px;
-    font: 600 .9rem/1.2 var(--jc-sans, system-ui, sans-serif);
+    padding: 10px 14px;
+    font: 600 .86rem/1.2 var(--jc-sans, system-ui, sans-serif);
 }
 .jcrtp-home a.jcrtp-btn:focus-visible {
     outline: 3px solid var(--home-violet);
@@ -128,26 +128,26 @@
     overflow: hidden;
     color: var(--home-ink);
     background:
-        url("../images/jcrtp-hero-art.svg") right center / auto 100% no-repeat,
-        radial-gradient(ellipse at 78% 45%, #6f2aa8 0%, #4b1a7c 38%, rgba(75, 26, 124, 0) 70%),
-        linear-gradient(90deg, #f5f0fb 0%, #efe6f8 34%, #b892dc 58%, #5a2192 80%, #3a1166 100%);
+        url("../images/jcrtp-hero-art.svg") 56% center / auto 122% no-repeat,
+        radial-gradient(ellipse at 66% 50%, rgba(138, 64, 196, .55) 0%, rgba(107, 40, 168, .3) 34%, rgba(107, 40, 168, 0) 66%),
+        linear-gradient(90deg, #f6f1fc 0%, #efe6f9 36%, #d6bdee 56%, #9c63cf 78%, #6b2aa8 100%);
 }
 /* Soft light wash keeps the text column readable over the artwork. */
 .jcrtp-hero::before {
     position: absolute;
     inset: 0;
     content: "";
-    background: linear-gradient(90deg, rgba(247, 242, 252, .97) 0%, rgba(247, 242, 252, .9) 36%, rgba(247, 242, 252, 0) 62%);
+    background: linear-gradient(90deg, rgba(247, 242, 252, .97) 0%, rgba(247, 242, 252, .88) 34%, rgba(247, 242, 252, 0) 54%);
     pointer-events: none;
 }
 .jcrtp-hero__inner {
     position: relative;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(250px, 300px);
+    grid-template-columns: minmax(0, 1fr) minmax(230px, 250px);
     align-items: center;
-    gap: 32px clamp(24px, 4vw, 64px);
-    min-height: clamp(380px, 30vw, 440px);
-    padding: clamp(36px, 4.4vw, 60px) var(--home-inline);
+    gap: 28px clamp(24px, 4vw, 64px);
+    min-height: clamp(340px, 28vw, 400px);
+    padding: clamp(28px, 3vw, 40px) var(--home-inline);
 }
 .jcrtp-hero__content {
     max-width: 660px;
@@ -159,12 +159,14 @@
     text-transform: uppercase;
 }
 .jcrtp-home .jcrtp-hero__title {
-    margin: 12px 0 0;
+    margin: 10px 0 0;
     color: var(--home-navy);
-    font: 700 clamp(2.2rem, 1.3rem + 3.1vw, 3.6rem)/1.08 var(--jc-serif, Georgia, serif);
-    letter-spacing: -.01em;
+    font: 700 clamp(2.2rem, 1.2rem + 3.2vw, 3.65rem)/1.04 var(--jc-serif, Georgia, serif);
+    letter-spacing: -.015em;
 }
-.jcrtp-hero__title span {
+/* Wireframe line break: "Research Today / for a Healthier Tomorrow". */
+.jcrtp-hero__title-lead { display: block; }
+.jcrtp-hero__title-accent {
     color: var(--home-purple);
 }
 .jcrtp-hero__title::after {
@@ -177,25 +179,25 @@
     border-radius: 2px;
 }
 .jcrtp-home .jcrtp-hero__lead {
-    max-width: 560px;
-    margin-top: 18px;
+    max-width: 470px;
+    margin-top: 16px;
     color: var(--home-ink);
-    font-size: clamp(1rem, .94rem + .3vw, 1.15rem);
-    line-height: 1.6;
+    font-size: clamp(1rem, .92rem + .35vw, 1.17rem);
+    line-height: 1.5;
 }
 .jcrtp-hero__actions {
     display: flex;
     flex-wrap: wrap;
     gap: 14px 18px;
-    margin-top: 28px;
+    margin-top: 22px;
 }
 
 /* Facts card (journal at a glance). */
 .jcrtp-facts {
     margin: 0;
-    padding: 8px 22px;
+    padding: 6px 18px;
     color: var(--home-ink);
-    background: rgba(255, 255, 255, .95);
+    background: rgba(255, 255, 255, .96);
     border: 1px solid rgba(255, 255, 255, .8);
     border-radius: var(--home-radius);
     box-shadow: 0 20px 44px rgba(28, 8, 60, .28);
@@ -206,7 +208,7 @@
     grid-template-rows: auto auto;
     column-gap: 16px;
     align-items: center;
-    padding: 15px 0;
+    padding: 12px 0;
 }
 .jcrtp-facts__row + .jcrtp-facts__row { border-top: 1px solid var(--home-line); }
 .jcrtp-facts__icon {
@@ -222,7 +224,7 @@
 .jcrtp-facts dd {
     margin: 2px 0 0;
     color: var(--home-navy);
-    font: 700 1.12rem/1.3 var(--jc-serif, Georgia, serif);
+    font: 700 1.22rem/1.25 var(--jc-serif, Georgia, serif);
 }
 .jcrtp-facts dd span {
     display: block;
@@ -244,7 +246,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     margin: 0;
-    padding: 20px var(--home-inline);
+    padding: 16px var(--home-inline);
     list-style: none;
 }
 .jcrtp-home .jcrtp-feature {
@@ -265,14 +267,14 @@
     width: 64px;
     height: 64px;
     color: var(--home-purple);
-    background: #ffffff;
+    background: radial-gradient(circle at 35% 30%, #ffffff 0%, #f1e7fb 60%, #e4d3f5 100%);
     border: 1px solid var(--home-lilac-2);
     border-radius: 50%;
     box-shadow: 0 4px 12px rgba(107, 31, 168, .1);
 }
-.jcrtp-feature__icon svg { width: 34px; height: 34px; }
+.jcrtp-feature__icon svg { width: 36px; height: 36px; }
 .jcrtp-home .jcrtp-feature__title {
-    font-size: 1.16rem;
+    font-size: 1.2rem;
     line-height: 1.25;
 }
 .jcrtp-home .jcrtp-feature p {
@@ -290,17 +292,17 @@
 /* ---------- 3. Content columns ---------- */
 .jcrtp-home__columns {
     display: grid;
-    grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr) minmax(250px, .64fr);
+    grid-template-columns: minmax(0, 1.17fr) minmax(0, 1fr) minmax(250px, .67fr);
     align-items: start;
-    gap: clamp(24px, 2.6vw, 40px);
-    padding: clamp(32px, 3.4vw, 48px) var(--home-inline) clamp(40px, 5vw, 64px);
+    gap: clamp(20px, 2vw, 28px);
+    padding: clamp(24px, 2.4vw, 32px) var(--home-inline) clamp(32px, 4vw, 48px);
 }
 .jcrtp-home-panel__head {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
     gap: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 .jcrtp-home .jcrtp-home-panel__head h2 {
     font-size: clamp(1.6rem, 1.3rem + .9vw, 2rem);
@@ -319,7 +321,7 @@
 
 /* Latest Articles sits between two column rules, as in the wireframe. */
 .jcrtp-latest {
-    padding: 0 clamp(20px, 2.4vw, 36px);
+    padding: 0 clamp(16px, 1.6vw, 22px);
     border-right: 1px solid var(--home-line);
     border-left: 1px solid var(--home-line);
 }
@@ -327,10 +329,10 @@
 /* Current issue card. */
 .jcrtp-current__card {
     display: grid;
-    grid-template-columns: minmax(130px, 190px) minmax(0, 1fr);
-    gap: clamp(18px, 2vw, 28px);
+    grid-template-columns: minmax(120px, 168px) minmax(0, 1fr);
+    gap: clamp(14px, 1.4vw, 20px);
     align-items: center;
-    padding: clamp(16px, 1.6vw, 22px);
+    padding: clamp(14px, 1.2vw, 16px);
     background: var(--home-lilac);
     border-radius: var(--home-radius);
 }
@@ -386,7 +388,9 @@
     font: 600 .95rem/1.4 var(--jc-sans, system-ui, sans-serif);
 }
 .jcrtp-home .jcrtp-current__date {
-    margin-top: 4px;
+    margin-top: 2px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #ddd0ee;
     color: var(--home-navy);
     font: 700 1.1rem/1.3 var(--jc-serif, Georgia, serif);
 }
@@ -409,6 +413,14 @@
     flex-wrap: wrap;
     gap: 10px;
     margin-top: 20px;
+}
+/* Wireframe: both issue buttons on one row whenever they fit. */
+.jcrtp-home .jcrtp-current__actions { gap: 8px; }
+.jcrtp-home .jcrtp-current__actions a.jcrtp-btn--small {
+    padding-right: 12px;
+    padding-left: 12px;
+    font-size: .82rem;
+    white-space: nowrap;
 }
 .jcrtp-current__card--empty {
     grid-template-columns: 64px minmax(0, 1fr);
@@ -450,10 +462,10 @@
 }
 .jcrtp-home .jcrtp-article-card {
     display: grid;
-    grid-template-columns: 104px minmax(0, 1fr);
-    gap: 18px;
+    grid-template-columns: 98px minmax(0, 1fr);
+    gap: 16px;
     margin: 0;
-    padding: 16px 0;
+    padding: 12px 0;
     line-height: 1.4;
 }
 .jcrtp-article-card:first-child { padding-top: 0; }
@@ -492,11 +504,14 @@
     border-radius: 3px;
     font: 600 .74rem/1.4 var(--jc-sans, system-ui, sans-serif);
 }
+/* Section colours cycle by OJS section id (wireframe: pink, lilac, green). */
+.jcrtp-badge--1 { color: #4a2a8c; background: #e9e1fa; }
+.jcrtp-badge--2 { color: #1d6b45; background: #dcf3e6; }
 .jcrtp-home .jcrtp-article-card__title {
     margin-top: 6px;
-    font-size: 1.04rem;
-    font-weight: 700;
-    line-height: 1.3;
+    font-size: 1.02rem;
+    font-weight: 600;
+    line-height: 1.25;
 }
 .jcrtp-home .jcrtp-article-card__title a {
     color: var(--home-navy);
@@ -544,7 +559,7 @@
 /* Side panels: announcements and important links. */
 .jcrtp-home__aside {
     display: grid;
-    gap: 20px;
+    gap: 16px;
     min-width: 0;
 }
 .jcrtp-side-panel {
@@ -558,16 +573,16 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 14px 18px;
+    padding: 10px 16px;
     color: var(--home-navy);
     background: var(--home-lilac);
-    font-size: 1.28rem;
+    font-size: 1.24rem;
     line-height: 1.2;
 }
 .jcrtp-side-panel__title svg { flex: none; color: var(--home-purple); }
 .jcrtp-side-panel__list {
     margin: 0;
-    padding: 6px 0;
+    padding: 4px 0;
     list-style: none;
 }
 .jcrtp-home .jcrtp-side-panel__list li { margin: 0; line-height: 1.4; }
@@ -576,10 +591,10 @@
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    min-height: 40px;
-    padding: 7px 18px;
+    min-height: 0;
+    padding: 6px 16px;
     color: var(--home-navy);
-    font-size: .95rem;
+    font-size: .92rem;
     text-decoration: none;
 }
 .jcrtp-home .jcrtp-side-panel__list a:hover,
@@ -609,8 +624,10 @@
     transform: rotate(45deg);
 }
 .jcrtp-home .jcrtp-side-panel__more {
-    margin: 0 18px 14px;
+    margin: 2px 16px 12px;
 }
+/* Link rows are hairline-separated in the wireframe. */
+.jcrtp-home .jcrtp-side-panel__list--links li + li { border-top: 1px solid #f0eaf8; }
 
 .jcrtp-additional-content {
     padding: 0 var(--home-inline) clamp(40px, 5vw, 64px);
@@ -647,7 +664,7 @@
     .jcrtp-hero {
         background:
             url("../images/jcrtp-hero-art.svg") 70% center / auto 100% no-repeat,
-            linear-gradient(90deg, #f5f0fb 0%, #efe6f8 30%, #8d5cc4 70%, #3a1166 100%);
+            linear-gradient(90deg, #f5f0fb 0%, #efe6f8 30%, #b48ade 70%, #6b2aa8 100%);
     }
     .jcrtp-hero::before {
         background: linear-gradient(90deg, rgba(247, 242, 252, .97) 0%, rgba(247, 242, 252, .9) 50%, rgba(247, 242, 252, .35) 100%);
